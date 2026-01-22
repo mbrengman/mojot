@@ -1,0 +1,7 @@
+[configuration]
+
+entry_symbol = "mojot_init"
+compatibility_minimum = "4.2"
+
+[libraries]
+linux.debug = "res://bin/mojot.so"
