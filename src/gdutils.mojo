@@ -11,6 +11,7 @@ from utils.numerics import nan, inf
 
 comptime VARIANT_SIZE: UInt = 24
 comptime UTIL_TYPE = ImplicitlyDestructible & Writable
+comptime CMP_EPSILON: Float32 = 1e-5
 
 struct FloatUtils(Movable):
     '''
@@ -25,10 +26,10 @@ struct FloatUtils(Movable):
     fn __init__(out self, to_gd:Bool):
         self.to_gd = to_gd
 
-
+    @always_inline
     fn sin(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
-        var value: Float32 = 0.0
+        var value: Float32
 
         if self.to_gd:
             if not mojo_rad:
@@ -59,14 +60,16 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn cos(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_rad:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.cos(mojo_rad.value())
+            value = math.cos(mojo_rad.value())
         else:
             if not gd_rad:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -90,14 +93,16 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn tan(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_rad:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.tan(mojo_rad.value())
+            value = math.tan(mojo_rad.value())
         else:
             if not gd_rad:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -121,14 +126,16 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn sinh(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_rad:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.sinh(mojo_rad.value())
+            value = math.sinh(mojo_rad.value())
         else:
             if not gd_rad:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -152,14 +159,16 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn cosh(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_rad:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.cosh(mojo_rad.value())
+            value = math.cosh(mojo_rad.value())
         else:
             if not gd_rad:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -183,14 +192,16 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn tanh(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_rad:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.tanh(mojo_rad.value())
+            value = math.tanh(mojo_rad.value())
         else:
             if not gd_rad:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -214,14 +225,16 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn asin(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_rad:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.asin(mojo_rad.value())
+            value = math.asin(mojo_rad.value())
         else:
             if not gd_rad:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -245,14 +258,16 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn acos(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_rad:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.acos(mojo_rad.value())
+            value = math.acos(mojo_rad.value())
         else:
             if not gd_rad:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -276,14 +291,16 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn atan(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_rad:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.atan(mojo_rad.value())
+            value = math.atan(mojo_rad.value())
         else:
             if not gd_rad:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -307,6 +324,7 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn atan2(self,
              mojo_x:Optional[Float32]=None,
              mojo_y:Optional[Float32]=None,
@@ -314,12 +332,13 @@ struct FloatUtils(Movable):
              gd_y:Optional[GDExtensionVariantPtr]=None
          ) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_x or not mojo_y:
                 print("'mojo_x' and 'mojo_y' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.atan2(mojo_x.value(), mojo_y.value())
+            value = math.atan2(mojo_x.value(), mojo_y.value())
         else:
             if not gd_x or not gd_y:
                 print("'gd_x' and 'gd_y' cannot be None if 'to_gd' is false")
@@ -329,7 +348,7 @@ struct FloatUtils(Movable):
             var y = undefined[Float32]()
             api.float_from_variant_constructor(C_Ptr(to=x).bitcast[NoneType](), gd_x.value())
             api.float_from_variant_constructor(C_Ptr(to=y).bitcast[NoneType](), gd_y.value())
-            value = retype[GDExtensionVariantPtr](math.atan2(x, y))
+            value = math.atan2(x, y)
 
         var variant_ptr = api.mem_alloc(VARIANT_SIZE).bitcast[GDExtentionVariant]()
         var float_var = C_Ptr(to=value).bitcast[NoneType]()
@@ -345,14 +364,16 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn asinh(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_rad:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.asinh(mojo_rad.value())
+            value = math.asinh(mojo_rad.value())
         else:
             if not gd_rad:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -376,14 +397,16 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn acosh(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_rad:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.acosh(mojo_rad.value())
+            value = math.acosh(mojo_rad.value())
         else:
             if not gd_rad:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -407,14 +430,16 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn atanh(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_rad:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.atanh(mojo_rad.value())
+            value = math.atanh(mojo_rad.value())
         else:
             if not gd_rad:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -438,14 +463,16 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn sqrt(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_rad:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.sqrt(mojo_rad.value())
+            value = math.sqrt(mojo_rad.value())
         else:
             if not gd_rad:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -469,19 +496,21 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn pow(self,
-           mojo_base: Optional[Float64]=None,
-           mojo_exp: Optional[Float64]=None,
+           mojo_base: Optional[Float32]=None,
+           mojo_exp: Optional[Float32]=None,
            gd_base: Optional[GDExtensionVariantPtr]=None,
            gd_exp: Optional[GDExtensionVariantPtr]=None
        ) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_base or not mojo_exp:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.pow(mojo_base.value(), mojo_exp.value())
+            value = math.pow(mojo_base.value(), mojo_exp.value())
         else:
             if not gd_base or not gd_exp:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -507,14 +536,16 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn log(self, mojo_x: Optional[Float32]=None, gd_x:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_x:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.log(mojo_x.value())
+            value = math.log(mojo_x.value())
         else:
             if not gd_x:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -538,14 +569,16 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
-    fn exp(self, mojo_x: Optional[Float64]=None, gd_x:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
+    @always_inline
+    fn exp(self, mojo_x: Optional[Float32]=None, gd_x:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_x:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.exp(mojo_x.value())
+            value = math.exp(mojo_x.value())
         else:
             if not gd_x:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -569,6 +602,7 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn max(self,
             mojo_a:Optional[Float32]=None,
             mojo_b:Optional[Float32]=None,
@@ -576,12 +610,13 @@ struct FloatUtils(Movable):
             gd_b:Optional[GDExtensionVariantPtr]=None
             ) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_a or not mojo_b:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.max(mojo_a.value(), mojo_b.value())
+            value = math.max(mojo_a.value(), mojo_b.value())
         else:
             if not gd_a or not gd_b:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -607,6 +642,7 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn min(self,
             mojo_a:Optional[Float32]=None,
             mojo_b:Optional[Float32]=None,
@@ -614,12 +650,13 @@ struct FloatUtils(Movable):
             gd_b:Optional[GDExtensionVariantPtr]=None
             ) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_a or not mojo_b:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = math.min(mojo_a.value(), mojo_b.value())
+            value = math.min(mojo_a.value(), mojo_b.value())
         else:
             if not gd_a or not gd_b:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -645,6 +682,7 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn wrap(self,
             mojo_value:Optional[Float32],
             mojo_min:Optional[Float32],
@@ -653,11 +691,10 @@ struct FloatUtils(Movable):
             gd_min:Optional[GDExtensionVariantPtr],
             gd_max: Optional[GDExtensionVariantPtr]
         ) -> Optional[GDExtensionVariantPtr]:
-
         ref api = get_api()[]
-        
+        var value: Float32 = 0.0
+
         if self.to_gd:
-            var value: Float32 = 0.0
             if not mojo_value or not mojo_min or not mojo_max:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
@@ -699,14 +736,16 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn is_nan(self, mojo_x: Optional[Float32]=None, gd_x:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Bool
 
         if self.to_gd:
             if not mojo_x:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = True if mojo_x == nan[DType.float32]() else False 
+            value = True if mojo_x == nan[DType.float32]() else False 
         else:
             if not gd_x:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -721,7 +760,7 @@ struct FloatUtils(Movable):
         api.variant_from_float_constructor(variant_ptr.bitcast[NoneType](), float_ptr)
         var var_type = api.variant_get_type(variant_ptr.bitcast[NoneType]())
 
-        if var_type != gdenums.Variant_Type.TYPE_FLOAT.value:
+        if var_type != gdenums.Variant_Type.TYPE_BOOL.value:
             var destroy = api.variant_get_ptr_destructor(GDEXTENTION_VARIANT_TYPE_FLOAT)
             destroy(variant_ptr.bitcast[NoneType]())
             api.mem_free(variant_ptr.bitcast[NoneType]())
@@ -730,14 +769,17 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn is_inf(self, mojo_x: Optional[Float32]=None, gd_x:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Bool = False
 
         if self.to_gd:
             if not mojo_x:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            var value = True if mojo_x == inf[DType.float32]() else False 
+            if mojo_x.value() == inf[DType.float32]():
+                value = True 
         else:
             if not gd_x:
                 print("'gd_rad' cannot be None if 'to_gd' is false")
@@ -745,7 +787,165 @@ struct FloatUtils(Movable):
 
             var result = undefined[Float32]()
             api.float_from_variant_constructor(C_Ptr(to=result).bitcast[NoneType](), gd_x.value())
-            value = True if result == inf[DType.float32]() else False
+            if result == inf[DType.float32]():
+                value = True
+
+        var variant_ptr = api.mem_alloc(VARIANT_SIZE).bitcast[GDExtentionVariant]()
+        var float_var = C_Ptr(to=value).bitcast[NoneType]()
+        api.variant_from_float_constructor(variant_ptr.bitcast[NoneType](), float_ptr)
+        var var_type = api.variant_get_type(variant_ptr.bitcast[NoneType]())
+
+        if var_type != gdenums.Variant_Type.TYPE_BOOL.value:
+            var destroy = api.variant_get_ptr_destructor(GDEXTENTION_VARIANT_TYPE_FLOAT)
+            destroy(variant_ptr.bitcast[NoneType]())
+            api.mem_free(variant_ptr.bitcast[NoneType]())
+            print("Variant not float type")
+            return None
+
+        return Optional(variant_ptr.bitcast[NoneType]())
+
+    @always_inline
+    fn is_equal_approx(self,
+                       mojo_a: Optional[Float32]=None,
+                       mojo_b: Optional[Float32]=None,
+                       gd_a: Optional[GDExtensionVariantPtr]=None,
+                       gd_b: Optional[GDExtensionVariantPtr]=None
+                   ) -> Optional[GDExtensionVariantPtr]:
+        ref api = get_api()[]
+        var value: Bool = False
+
+        if self.to_gd:
+            var value = False
+            if not mojo_a or not mojo_b:
+                print("'angle_rad' cannot be None if 'to_gd' is true")
+                return None
+            if mojo_b.value() == mojo_a.value():
+                value = True
+            else:
+                var tolerance = math.abs(mojo_b.value()) * CMP_EPSILON
+                if tolerance < CMP_EPSILON:
+                    tolerance = CMP_EPSILON
+                value = math.abs(mojo_a.value() - mojo_b.value()) < tolerance
+        else:
+            if not gd_a or not gd_b:
+                print("'gd_rad' cannot be None if 'to_gd' is false")
+                return None
+
+            var b = undefined[Float32]()
+            var a = undefined[Float32]()
+            api.float_from_variant_constructor(C_Ptr(to=a).bitcast[NoneType](), gd_a.value())
+            api.float_from_variant_constructor(C_Ptr(to=b).bitcast[NoneType](), gd_b.value())
+            var tolerance = math.abs(b) * CMP_EPSILON
+            if tolerance < CMP_EPSILON:
+                tolerance = CMP_EPSILON
+            value = math.abs(a - b) < tolerance
+
+        var variant_ptr = api.mem_alloc(VARIANT_SIZE).bitcast[GDExtentionVariant]()
+        var float_var = C_Ptr(to=value).bitcast[NoneType]()
+        api.variant_from_float_constructor(variant_ptr.bitcast[NoneType](), float_ptr)
+        var var_type = api.variant_get_type(variant_ptr.bitcast[NoneType]())
+
+        if var_type != gdenums.Variant_Type.TYPE_BOOL.value:
+            var destroy = api.variant_get_ptr_destructor(GDEXTENTION_VARIANT_TYPE_FLOAT)
+            destroy(variant_ptr.bitcast[NoneType]())
+            api.mem_free(variant_ptr.bitcast[NoneType]())
+            print("Variant not float type")
+            return None
+
+        return Optional(variant_ptr.bitcast[NoneType]())
+
+    @always_inline
+    fn is_zero_approx(self, mojo_x:Optional[Float32]=None, gd_x:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
+        ref api = get_api()[]
+        var value: Bool = False
+
+        if self.to_gd:
+            if not mojo_x:
+                print("'angle_rad' cannot be None if 'to_gd' is true")
+                return None
+            if math.abs(mojo_x.value()) < CMP_EPSILON:
+                value = True
+        else:
+            if not gd_x:
+                print("'gd_rad' cannot be None if 'to_gd' is false")
+                return None
+
+            var x = undefined[Float32]()
+            api.float_from_variant_constructor(C_Ptr(to=x).bitcast[NoneType](), gd_x.value())
+            value = math.abs(x) < CMP_EPSILON
+
+        var variant_ptr = api.mem_alloc(VARIANT_SIZE).bitcast[GDExtentionVariant]()
+        var float_var = C_Ptr(to=value).bitcast[NoneType]()
+        api.variant_from_float_constructor(variant_ptr.bitcast[NoneType](), float_ptr)
+        var var_type = api.variant_get_type(variant_ptr.bitcast[NoneType]())
+
+        if var_type != gdenums.Variant_Type.TYPE_BOOL.value:
+            var destroy = api.variant_get_ptr_destructor(GDEXTENTION_VARIANT_TYPE_FLOAT)
+            destroy(variant_ptr.bitcast[NoneType]())
+            api.mem_free(variant_ptr.bitcast[NoneType]())
+            print("Variant not float type")
+            return None
+
+        return Optional(variant_ptr.bitcast[NoneType]())
+
+    @always_inline
+    fn is_finite(self, mojo_x:Optional[Float32]=None, gd_x:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
+        ref api = get_api()[]
+        var value: Bool = False
+
+        if self.to_gd:
+            if not mojo_x:
+                print("'angle_rad' cannot be None if 'to_gd' is true")
+                return None
+            if mojo_x.value() < inf[DType.float32]():
+                value = True
+        else:
+            if not gd_x:
+                print("'gd_rad' cannot be None if 'to_gd' is false")
+                return None
+            var result = undefined[Float32]()
+            api.float_from_variant_constructor(C_Ptr(to=result).bitcast[NoneType](), gd_x.value())
+            if result < inf[DType.float32]():
+                value = True
+
+        var variant_ptr = api.mem_alloc(VARIANT_SIZE).bitcast[GDExtentionVariant]()
+        var float_var = C_Ptr(to=value).bitcast[NoneType]()
+        api.variant_from_float_constructor(variant_ptr.bitcast[NoneType](), float_ptr)
+        var var_type = api.variant_get_type(variant_ptr.bitcast[NoneType]())
+
+        if var_type != gdenums.Variant_Type.TYPE_BOOL.value:
+            var destroy = api.variant_get_ptr_destructor(GDEXTENTION_VARIANT_TYPE_FLOAT)
+            destroy(variant_ptr.bitcast[NoneType]())
+            api.mem_free(variant_ptr.bitcast[NoneType]())
+            print("Variant not float type")
+            return None
+
+        return Optional(variant_ptr.bitcast[NoneType]())
+
+    @always_inline
+    fn ease(x: Float64, curve: Float64) -> Float64:
+        ref api = get_api()[]
+        # TODO: Prepare args as Variant array.
+        return api.util_call("ease")
+
+    @always_inline
+    fn step_decimals(self, mojo_x:Optional[Float32]=None, gd_x:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
+        ref api = get_api()[]
+        var value: Float32 = 0.0
+
+        if self.to_gd:
+            if not mojo_x:
+                print("'angle_rad' cannot be None if 'to_gd' is true")
+                return None
+            value = 1 * 10 ** mojo_x.value()
+        else:
+            if not gd_x:
+                print("'gd_rad' cannot be None if 'to_gd' is false")
+                return None
+
+            var result = undefined[Float32]()
+            api.float_from_variant_constructor(C_Ptr(to=result).bitcast[NoneType](), gd_x.value())
+            value = 1 * 10 ** result
 
         var variant_ptr = api.mem_alloc(VARIANT_SIZE).bitcast[GDExtentionVariant]()
         var float_var = C_Ptr(to=value).bitcast[NoneType]()
@@ -761,35 +961,7 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
-    fn is_equal_approx(self,
-                       mojo_a: Optional[Float32]=None,
-                       mojo_b: Optional[Float32]=None,
-                       gd_a: Optional[GDExtensionVariantPtr]=None,
-                       gd_b: Optional[GDExtensionVariantPtr]=None
-                   ) -> Optional[GDExtensionVariantPtr]:
-        ref api = get_api()[]
-        # TODO: Prepare args as Variant array.
-        return None
-        return api.util_call("is_equal_approx")
-
-    fn is_zero_approx(x: Float64) -> Bool:
-        ref api = get_api()[]
-        # TODO: Prepare args as Variant array.
-        return api.util_call("is_zero_approx")
-
-    fn is_finite(x: Float64) -> Bool:
-        return True if x < Float64.MAX else False
-
-    fn ease(x: Float64, curve: Float64) -> Float64:
-        ref api = get_api()[]
-        # TODO: Prepare args as Variant array.
-        return api.util_call("ease")
-
-    fn step_decimals(x: Float64) -> Int64:
-        ref api = get_api()[]
-        # TODO: Prepare args as Variant array.
-        return api.util_call("step_decimals")
-
+    @always_inline
     fn clamp(self,
              mojo_value: Optional[Float32]=None,
              mojo_min: Optional[Float32]=None,
@@ -798,17 +970,16 @@ struct FloatUtils(Movable):
              gd_min: Optional[GDExtensionVariantPtr]=None,
              gd_max: Optional[GDExtensionVariantPtr]=None
          ) -> Optional[GDExtensionVariantPtr]:
-
         ref api = get_api()[]
+        var value: Float32 = 0.0
         
         if self.to_gd:
-            var value: Float32 = 0.0
             if not mojo_value or not mojo_min or not mojo_max:
                 print("'angle_rad' cannot be None if 'to_gd' is true")
                 return None
-            if mojo_value.value() < mojo_min.value():
+            if mojo_value.value() <= mojo_min.value():
                 value = mojo_min.value()
-            elif mojo_value.value() > mojo_max.value():
+            elif mojo_value.value() >= mojo_max.value():
                 value = mojo_max.value()
             else:
                 value = mojo_value.value()
@@ -823,9 +994,9 @@ struct FloatUtils(Movable):
             api.float_from_variant_constructor(C_Ptr(to=base).bitcast[NoneType](), gd_value.value())
             api.float_from_variant_constructor(C_Ptr(to=max).bitcast[NoneType](), gd_max.value())
             api.float_from_variant_constructor(C_Ptr(to=min).bitcast[NoneType](), gd_min.value())
-            if base < min:
+            if base <= min:
                 value = min
-            elif base > max:
+            elif base >= max:
                 value = max
             else:
                 value = base
@@ -844,117 +1015,246 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
-    fn signf(x: Float64) -> Float64:
-        var output = nan[DType.float64]()
-        if x > 0:
-            output = Scalar[DType.float64](1.0)
-        elif x < 0:
-            output = Scalar[DType.float64](-1.0)
-        elif x == 0:
-            output = Scalar[DType.float64](0.0)
-        return output
+    @always_inline
+    fn signf(self, mojo_x:Optional[Float32]=None, gd_x:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
+        ref api = get_api()[]
+        var value: Float32 = nan[DType.float32]()
 
+        if self.to_gd:
+            if not mojo_x:
+                print("'angle_rad' cannot be None if 'to_gd' is true")
+                return None
+            if mojo_x.value() == 0:
+                value = 0.0
+            elif mojo_x.value() != 0.0:
+                value = mojo_x.value() ** 0
+        else:
+            if not gd_x:
+                print("'gd_rad' cannot be None if 'to_gd' is false")
+                return None
+
+            var result = undefined[Float32]()
+            api.float_from_variant_constructor(C_Ptr(to=result).bitcast[NoneType](), gd_x.value())
+            if result == 0:
+                value = 0.0
+            elif result != 0.0:
+                value = result ** 0
+
+        var variant_ptr = api.mem_alloc(VARIANT_SIZE).bitcast[GDExtensionVariant]()
+        var float_var = C_Ptr(to=value).bitcast[NoneType]()
+        api.variant_from_float_constructor(variant_ptr.bitcast[NoneType](), float_ptr)
+        var var_type = api.variant_get_type(variant_ptr.bitcast[NoneType]())
+
+        if var_type != gdenums.Variant_Type.TYPE_FLOAT.value:
+            var destroy = api.variant_get_ptr_destructor(GDEXTENTION_VARIANT_TYPE_FLOAT)
+            destroy(variant_ptr.bitcast[NoneType]())
+            api.mem_free(variant_ptr.bitcast[NoneType]())
+            print("Variant not float type")
+            return None
+
+        return Optional(variant_ptr.bitcast[NoneType]())
+
+    @always_inline
     fn pingpong(value: Float64, length: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("pingpong")
 
-    fn snappedf(x: Float64, step: Float64) -> Float64:
+    @always_inline
+    fn snappedf(self,
+                mojo_x:Optional[Float32]=None,
+                mojo_step:Optional[Float32]=None,
+                gd_x:Optional[GDExtensionVariantPtr]=None,
+                gd_step:Optional[GDExtensionVariantPtr]=None
+            ) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
-        # TODO: Prepare args as Variant array.
-        return api.util_call("snappedf")
+        var value: Float32 = 0.0
+        
+        if self.to_gd:
+            if not mojo_x or not mojo_step:
+                print("mojo elements cannot be None if 'to_gd' is true")
+                return None
+            if mojo_step.value() != 0:
+                value = math.floor(mojo_x.value() / mojo_step.value()) * mojo_step.value()
+        else:
+            if not gd_x or not gd_step:
+                print("gd elements cannot be None if 'to_gd' is false")
+                return None
 
-    fn lerpf(start: Float64, stop: Float64, weight: Float64) -> Float64:
-        return start + (stop - start) * weight
+            var x = undefined[Float32]()
+            var step = undefined[Float32]()
+            api.float_from_variant_constructor(C_Ptr(to=x).bitcast[NoneType](), gd_x.value())
+            api.float_from_variant_constructor(C_Ptr(to=step).bitcast[NoneType](), gd_step.value())
+            if step != 0:
+                value = math.floor(x / step) * step
 
+        var variant_ptr = api.mem_alloc(VARIANT_SIZE).bitcast[GDExtentionVariant]()
+        var float_var = C_Ptr(to=value).bitcast[NoneType]()
+        api.variant_from_float_constructor(variant_ptr.bitcast[NoneType](), float_ptr)
+        var var_type = api.variant_get_type(variant_ptr.bitcast[NoneType]())
+
+        if var_type != gdenums.Variant_Type.TYPE_FLOAT.value:
+            var destroy = api.variant_get_ptr_destructor(GDEXTENTION_VARIANT_TYPE_FLOAT)
+            destroy(variant_ptr.bitcast[NoneType]())
+            api.mem_free(variant_ptr.bitcast[NoneType]())
+            print("Variant not float type")
+            return None
+
+        return Optional(variant_ptr.bitcast[NoneType]())
+
+    @always_inline
+    fn lerp(self,
+             mojo_start:Optional[Float32]=None,
+             mojo_stop:Optional[Float32]=None,
+             mojo_weight:Optional[Float32]=None,
+             gd_start:Optional[GDExtensionVariantPtr]=None,
+             gd_stop:Optional[GDExtensionVariantPtr]=None,
+             gd_weight:Optional[GDExtensionVariantPtr]=None
+         ) -> Optional[GDExtensionVariantPtr]:
+        ref api = get_api()[]
+        var value: Float32 = 0.0
+
+        if self.to_gd:
+            if not mojo_start or not mojo_stop or not mojo_weight:
+                print("'mojo' elements cannot be None if 'to_gd' is true")
+                return None
+            value = mojo_start.value() + (mojo_stop.value() - mojo_start.value()) * mojo_weight.value()
+        else:
+            if not gd_start or not gd_stop or not gd_weight:
+                print("'gd' elements cannot be None if 'to_gd' is false")
+                return None
+
+            var start = undefined[Float32]()
+            var stop = undefined[Float32]()
+            var weight = undefined[Float32]()
+            api.float_from_variant_constructor(C_Ptr(to=start).bitcast[NoneType](), gd_start.value())
+            api.float_from_variant_constructor(C_Ptr(to=stop).bitcast[NoneType](), gd_stop.value())
+            api.float_from_variant_constructor(C_Ptr(to=weight).bitcast[NoneType](), gd_weight.value())
+
+            value = start + (stop - start) * weight
+
+        var variant_ptr = api.mem_alloc(VARIANT_SIZE).bitcast[GDExtentionVariant]()
+        var float_var = C_Ptr(to=value).bitcast[NoneType]()
+        api.variant_from_float_constructor(variant_ptr.bitcast[NoneType](), float_ptr)
+        var var_type = api.variant_get_type(variant_ptr.bitcast[NoneType]())
+
+        if var_type != gdenums.Variant_Type.TYPE_FLOAT.value:
+            var destroy = api.variant_get_ptr_destructor(GDEXTENTION_VARIANT_TYPE_FLOAT)
+            destroy(variant_ptr.bitcast[NoneType]())
+            api.mem_free(variant_ptr.bitcast[NoneType]())
+            print("Variant not float type")
+            return None
+
+        return Optional(variant_ptr.bitcast[NoneType]())
+
+    @always_inline
     fn cubic_interpolate(start: Float64, stop: Float64, pre: Float64, post: Float64, weight: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("cubic_interpolate")
 
+    @always_inline
     fn cubic_interpolate_angle(start: Float64, stop: Float64, pre: Float64, post: Float64, weight: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("cubic_interpolate_angle")
 
+    @always_inline
     fn cubic_interpolate_in_time(start: Float64, stop: Float64, pre: Float64, post: Float64, weight: Float64, to_t: Float64, pre_t: Float64, post_t: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("cubic_interpolate_in_time")
 
+    @always_inline
     fn cubic_interpolate_angle_in_time(start: Float64, stop: Float64, pre: Float64, post: Float64, weight: Float64, to_t: Float64, pre_t: Float64, post_t: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("cubic_interpolate_angle_in_time")
 
+    @always_inline
     fn bezier_interpolate(start: Float64, control_1: Float64, control_2: Float64, end: Float64, t: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("bezier_interpolate")
 
+    @always_inline
     fn bezier_derivative(start: Float64, control_1: Float64, control_2: Float64, end: Float64, t: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("bezier_derivative")
 
+    @always_inline
     fn angle_difference(start: Float64, stop: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("angle_difference")
 
+    @always_inline
     fn lerp_angle(from: Float64, to: Float64, weight: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("lerp_angle")
 
+    @always_inline
     fn inverse_lerp(from: Float64, to: Float64, weight: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("inverse_lerp")
 
+    @always_inline
     fn remap(value: Float64, istart: Float64, istop: Float64, ostart: Float64, ostop: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("remap")
 
+    @always_inline
     fn smoothstep(from: Float64, to: Float64, x: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("smoothstep")
 
+    @always_inline
     fn move_toward(start: Float64, stop: Float64, delta: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("move_toward")
 
+    @always_inline
     fn rotate_toward(start: Float64, stop: Float64, delta: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("rotate_toward")
 
+    @always_inline
     fn deg_to_rad(deg: Float64) -> Float64:
         return deg * (math.pi / 180)
 
+    @always_inline
     fn rad_to_deg(rad: Float64) -> Float64:
         return rad * (180 / math.pi)
 
+    @always_inline
     fn linear_to_db(lin: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("linear_to_db")
 
+    @always_inline
     fn db_to_linear(db: Float64) -> Float64:
         ref api = get_api()[]
         # TODO: Prepare args as Variant array.
         return api.util_call("db_to_linear")
 
+    @always_inline
     fn randf() -> Float64:
         # TODO: Prepare args as Variant array.
         return random.random_float64(Float64.MIN, Float64.MAX)
 
+    @always_inline
     fn randf_range(start: Float64, stop: Float64) -> Float64:
         return random.random_float64(start, stop)
 
+    @always_inline
     fn randfn(mean: Float64, deviation: Float64) -> Float64:
         var size: Int = 1
         var ptr = alloc[Float64](size)
@@ -965,6 +1265,7 @@ struct FloatUtils(Movable):
         ptr.free()
         return output
 
+    @always_inline
     fn fmod(self,
              mojo_x:Optional[Float32]=None,
              mojo_y:Optional[Float32]=None,
@@ -972,6 +1273,7 @@ struct FloatUtils(Movable):
              gd_y:Optional[GDExtensionVariantPtr]=None
          ) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_x or not mojo_y:
@@ -987,7 +1289,7 @@ struct FloatUtils(Movable):
             var y = undefined[Float32]()
             api.float_from_variant_constructor(C_Ptr(to=x).bitcast[NoneType](), gd_x.value())
             api.float_from_variant_constructor(C_Ptr(to=y).bitcast[NoneType](), gd_y.value())
-            value = retype[GDExtensionVariantPtr](x % y)
+            value = x % y
 
         var variant_ptr = api.mem_alloc(VARIANT_SIZE).bitcast[GDExtentionVariant]()
         var float_var = C_Ptr(to=value).bitcast[NoneType]()
@@ -1001,8 +1303,9 @@ struct FloatUtils(Movable):
             print("Variant not float type")
             return None
 
-        return Optional(variant_ptr.bitcast[NoneType]())
+        return Optional(variant_ptr.bitcast[NoneType]())^
 
+    @always_inline
     fn fposmod(self,
              mojo_x:Optional[Float32]=None,
              mojo_y:Optional[Float32]=None,
@@ -1010,13 +1313,13 @@ struct FloatUtils(Movable):
              gd_y:Optional[GDExtensionVariantPtr]=None
          ) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
+        var value: Float32
 
         if self.to_gd:
             if not mojo_x or not mojo_y:
                 print("'mojo_x' and 'mojo_y' cannot be None if 'to_gd' is true")
                 return None
-            var value = mojo_x.value() % mojo_y.value()
-            value = value * -1 if value < 0 else value
+            value = math.abs(mojo_x.value() % mojo_y.value())
         else:
             if not gd_x or not gd_y:
                 print("'gd_x' and 'gd_y' cannot be None if 'to_gd' is false")
@@ -1026,9 +1329,7 @@ struct FloatUtils(Movable):
             var y = undefined[Float32]()
             api.float_from_variant_constructor(C_Ptr(to=x).bitcast[NoneType](), gd_x.value())
             api.float_from_variant_constructor(C_Ptr(to=y).bitcast[NoneType](), gd_y.value())
-            var mod = x % y
-            mod = mod * -1 if mod < 0 else mod
-            value = retype[GDExtensionVariantPtr](mod)
+            mod = math.abs(x % y)
 
         var variant_ptr = api.mem_alloc(VARIANT_SIZE).bitcast[GDExtentionVariant]()
         var float_var = C_Ptr(to=value).bitcast[NoneType]()
@@ -1044,7 +1345,8 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
-    fn floorf(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
+    @always_inline
+    fn floor(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
 
         if self.to_gd:
@@ -1075,7 +1377,8 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
-    fn ceilf(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
+    @always_inline
+    fn ceil(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
 
         if self.to_gd:
@@ -1106,7 +1409,8 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
-    fn roundf(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
+    @always_inline
+    fn round(self, mojo_rad:Optional[Float32]=None, gd_rad:Optional[GDExtensionVariantPtr]=None) -> Optional[GDExtensionVariantPtr]:
         ref api = get_api()[]
 
         if self.to_gd:
@@ -1137,18 +1441,19 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
-    fn absf(self, mojo_x:Optional[Float32]=None, gd_x:Optional[GDExtensionVariantPtr]=None):
+    @always_inline
+    fn abs(self, mojo_x:Optional[Float32]=None, gd_x:Optional[GDExtensionVariantPtr]=None):
         ref api = get_api()[]
 
         if self.to_gd:
             if not mojo_x:
                 print("'mojo_x' cannot be None if 'to_gd' is true")
-                return
+                return None
             value = math.abs(mojo_x.value())
         else:
             if not gd_x:
                 print("'gd_x' cannot be None if 'to_gd' is false")
-                return
+                return None
 
             var result = undefined[Float32]()
             api.float_from_variant_constructor(C_Ptr(to=result).bitcast[NoneType](), gd_x.value())
@@ -1168,6 +1473,7 @@ struct FloatUtils(Movable):
 
         return Optional(variant_ptr.bitcast[NoneType]())
 
+    @always_inline
     fn randomize(self):
         random.seed()
 
@@ -1509,3 +1815,4 @@ fn float_to_variant(bits: UInt8, value: Float64) -> GDExtensionVariantPtr:
         return C_VoidPtr()
 
     return variant_ptr.bitcast[NoneType]()
+
