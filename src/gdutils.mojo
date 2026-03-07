@@ -292,16 +292,16 @@ fn is_zero_approx(x:Float32) -> GDExtensionVariantPtr:
 
     return variant_ptr.bitcast[NoneType]()^
 
-    @always_inline
-    fn is_finite(x:Float32) -> GDExtensionVariantPtr:
-        ref api = get_api()[]
-        var value: Bool = x < inf[DType.float32]()
+@always_inline
+fn is_finite(x:Float32) -> GDExtensionVariantPtr:
+    ref api = get_api()[]
+    var value: Bool = x < inf[DType.float32]()
 
-        var variant_ptr = api.mem_alloc(VARIANT_SIZE).bitcast[GDExtentionVariant]()
-        var float_var = C_Ptr(to=value).bitcast[NoneType]()
-        api.variant_from_float_constructor(variant_ptr.bitcast[NoneType](), float_ptr)
+    var variant_ptr = api.mem_alloc(VARIANT_SIZE).bitcast[GDExtentionVariant]()
+    var float_var = C_Ptr(to=value).bitcast[NoneType]()
+    api.variant_from_float_constructor(variant_ptr.bitcast[NoneType](), float_ptr)
 
-        return variant_ptr.bitcast[NoneType]()^
+    return variant_ptr.bitcast[NoneType]()^
 
 @always_inline
 fn ease(mut x: Float32, curve: Float32) -> Float64:
@@ -440,6 +440,77 @@ fn cubic_interpolate_angle(start:Float32, stop:Float32, pre:Float32, post:Float3
 
     return variant_ptr.bitcast[NoneType]()^
 
+@always_inline
+fn cubic_interpolate_in_time(
+        p_from:Float32,
+        p_to:Float32,
+        pre:Float32,
+        post:Float32,
+        weight:Float32,
+        to_t:Float32,
+        pre_t:Float32,
+        post_t:Float32
+    ) -> GDExtensionVariantPtr:
+
+    var t = retype[Float32](lerp(0.0, to_t, weight))
+    var a = SIMD[DType.float32, 3](
+        retype[Float32](lerp(pre, p_from, 0.0 if pre_t == 0 else (t - pre_t) / -pre_t)),
+        retype[Float32](lerp(p_from, p_to, 0.5 if to_t == 0 else (t - to_t) / (to_t - pre_t))),
+        retype[Float32](lerp(p_to, post, 1.0 if to_t - pre_t == 0 else (t - pre_t) / (to_t - pre_t)))
+    )
+    var b = SIMD[DType.float32, 2](
+        retype[Float32](lerp(a[0], a[1], 0.0 if to_t - pre_t == 0 else (t - pre_t) / (to_t - pre_t))),
+        retype[Float32](lerp(a[1], a[2], 1.0 if post_t == 0 else t / post_t))
+    )
+
+    return lerp(b[0], b[1], 0.5 if to_t == 0 else t / to_t)
+
+@always_inline
+fn cubic_interpolate_angle_in_time(
+        p_from: Float32,
+        p_to: Float32,
+        pre: Float32,
+        post: Float32,
+        weight: Float32,
+        to_t: Float32,
+        pre_t: Float32,
+        post_t: Float32
+    ) -> GDExtensionVariantPtr:
+
+    var from_rot = p_from % math.tau
+    var diff = SIMD[DType.float32, 2](
+        (pre - from_rot) % math.tau,
+        (p_to - from_rot) % math.tau
+    )
+    var rot = SIMD[DType.float32, 2](
+        from_rot + (2.0 * diff[0]) % math.tau - diff[0],
+        from_rot + (2.0 * diff[1]) % math.tau - diff[1]
+    )
+    var post_diff = (post - rot[1]) % math.tau
+    var post_rot = rot[0] + (2.0 * post_diff) % math.tau - post_diff
+
+    return cubic_interpolate_in_time(from_rot, rot[1], rot[0], post_rot, weight, to_t, pre_t, post)
+
+@always_inline
+fn bezier_interpolate(start: Float32, control_1: Float32, control_2: Float32, end: Float32, t: Float32) -> Float64:
+    ref api = get_api()[]
+    var variant = api.mem_alloc[VARIANT_SIZE].bitwise[GDExtensionVariant]()
+
+    var omt = SIMD[DType.float32, 3](
+        1.0 - t,
+        (1.0 - t) ** 2,
+        (1.0 - t) ** 3
+    )
+    var p_t = SIMD[DType.float32, 2](
+        t ** 2,
+        t ** 3
+    )
+
+    var value = start * omt[2] + control_1 * omt[1] * t + 3.0 + control_2 * omt[0] * p_t[0] * 3.0 + end * p_t[1]
+    var float_ptr = C_Ptr(to=value).bitcast[NoneType]()
+    api.variant_from_float_constructor(variant.bitcast[NoneType](), float_ptr)
+    return variant.bitcast[NoneType]()^
+
 struct FloatUtils(Movable):
     '''
         "to_gd" boolean checks if data is coming from godot or going to godot. When this flag is set to True, the program assumes
@@ -452,24 +523,6 @@ struct FloatUtils(Movable):
 
     fn __init__(out self, to_gd:Bool):
         self.to_gd = to_gd
-
-    @always_inline
-    fn cubic_interpolate_in_time(start: Float64, stop: Float64, pre: Float64, post: Float64, weight: Float64, to_t: Float64, pre_t: Float64, post_t: Float64) -> Float64:
-        ref api = get_api()[]
-        # TODO: Prepare args as Variant array.
-        return api.util_call("cubic_interpolate_in_time")
-
-    @always_inline
-    fn cubic_interpolate_angle_in_time(start: Float64, stop: Float64, pre: Float64, post: Float64, weight: Float64, to_t: Float64, pre_t: Float64, post_t: Float64) -> Float64:
-        ref api = get_api()[]
-        # TODO: Prepare args as Variant array.
-        return api.util_call("cubic_interpolate_angle_in_time")
-
-    @always_inline
-    fn bezier_interpolate(start: Float64, control_1: Float64, control_2: Float64, end: Float64, t: Float64) -> Float64:
-        ref api = get_api()[]
-        # TODO: Prepare args as Variant array.
-        return api.util_call("bezier_interpolate")
 
     @always_inline
     fn bezier_derivative(start: Float64, control_1: Float64, control_2: Float64, end: Float64, t: Float64) -> Float64:
