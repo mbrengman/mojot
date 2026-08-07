@@ -5,86 +5,87 @@ comptime c_char32 = UInt32
 comptime c_char16 = UInt16
 comptime c_wchar = Int32  # implementation defined
 
-comptime GDExtensionVariantType = UInt8
-comptime GDEXTENSION_VARIANT_TYPE_NIL = 0
+# basic types
+comptime VariantType = UInt8
+comptime NIL = 0
 # atomic types
-comptime GDEXTENSION_VARIANT_TYPE_BOOL = 1
-comptime GDEXTENSION_VARIANT_TYPE_INT = 2
-comptime GDEXTENSION_VARIANT_TYPE_FLOAT = 3
-comptime GDEXTENSION_VARIANT_TYPE_STRING = 4
+comptime BOOL = 1
+comptime INT = 2
+comptime FLOAT = 3
+comptime STRING = 4
 # math types
-comptime GDEXTENSION_VARIANT_TYPE_VECTOR2 = 5
-comptime GDEXTENSION_VARIANT_TYPE_VECTOR2I = 6
-comptime GDEXTENSION_VARIANT_TYPE_RECT2 = 7
-comptime GDEXTENSION_VARIANT_TYPE_RECT2I = 8
-comptime GDEXTENSION_VARIANT_TYPE_VECTOR3 = 9
-comptime GDEXTENSION_VARIANT_TYPE_VECTOR3I = 10
-comptime GDEXTENSION_VARIANT_TYPE_TRANSFORM2D = 11
-comptime GDEXTENSION_VARIANT_TYPE_VECTOR4 = 12
-comptime GDEXTENSION_VARIANT_TYPE_VECTOR4I = 13
-comptime GDEXTENSION_VARIANT_TYPE_PLANE = 14
-comptime GDEXTENSION_VARIANT_TYPE_QUATERNION = 15
-comptime GDEXTENSION_VARIANT_TYPE_AABB = 16
-comptime GDEXTENSION_VARIANT_TYPE_BASIS = 17
-comptime GDEXTENSION_VARIANT_TYPE_TRANSFORM3D = 18
-comptime GDEXTENSION_VARIANT_TYPE_PROJECTION = 19
+comptime VECTOR2 = 5
+comptime VECTOR2I = 6
+comptime RECT2 = 7
+comptime RECT2I = 8
+comptime VECTOR3 = 9
+comptime VECTOR3I = 10
+comptime TRANSFORM2D = 11
+comptime VECTOR4 = 12
+comptime VECTOR4I = 13
+comptime PLANE = 14
+comptime QUATERNION = 15
+comptime AABB = 16
+comptime BASIS = 17
+comptime TRANSFORM3D = 18
+comptime PROJECTION = 19
 # misc types
-comptime GDEXTENSION_VARIANT_TYPE_COLOR = 20
-comptime GDEXTENSION_VARIANT_TYPE_STRING_NAME = 21
-comptime GDEXTENSION_VARIANT_TYPE_NODE_PATH = 22
-comptime GDEXTENSION_VARIANT_TYPE_RID = 23
-comptime GDEXTENSION_VARIANT_TYPE_OBJECT = 24
-comptime GDEXTENSION_VARIANT_TYPE_CALLABLE = 25
-comptime GDEXTENSION_VARIANT_TYPE_SIGNAL = 26
-comptime GDEXTENSION_VARIANT_TYPE_DICTIONARY = 27
-comptime GDEXTENSION_VARIANT_TYPE_ARRAY = 28
+comptime COLOR = 20
+comptime STRING_NAME = 21
+comptime NODE_PATH = 22
+comptime RID = 23
+comptime OBJECT = 24
+comptime CALLABLE = 25
+comptime SIGNAL = 26
+comptime DICTIONARY = 27
+comptime ARRAY = 28
 # typed arrays
-comptime GDEXTENSION_VARIANT_TYPE_PACKED_BYTE_ARRAY = 29
-comptime GDEXTENSION_VARIANT_TYPE_PACKED_INT32_ARRAY = 30
-comptime GDEXTENSION_VARIANT_TYPE_PACKED_INT64_ARRAY = 31
-comptime GDEXTENSION_VARIANT_TYPE_PACKED_FLOAT32_ARRAY = 32
-comptime GDEXTENSION_VARIANT_TYPE_PACKED_FLOAT64_ARRAY = 33
-comptime GDEXTENSION_VARIANT_TYPE_PACKED_STRING_ARRAY = 34
-comptime GDEXTENSION_VARIANT_TYPE_PACKED_VECTOR2_ARRAY = 35
-comptime GDEXTENSION_VARIANT_TYPE_PACKED_VECTOR3_ARRAY = 36
-comptime GDEXTENSION_VARIANT_TYPE_PACKED_COLOR_ARRAY = 37
-comptime GDEXTENSION_VARIANT_TYPE_PACKED_VECTOR4_ARRAY = 38
-#
-comptime GDEXTENSION_VARIANT_TYPE_VARIANT_MAX = 39
+comptime PACKED_BYTE_ARRAY = 29
+comptime PACKED_INT32_ARRAY = 30
+comptime PACKED_INT64_ARRAY = 31
+comptime PACKED_FLOAT32_ARRAY = 32
+comptime PACKED_FLOAT64_ARRAY = 33
+comptime PACKED_STRING_ARRAY = 34
+comptime PACKED_VECTOR2_ARRAY = 35
+comptime PACKED_VECTOR3_ARRAY = 36
+comptime PACKED_COLOR_ARRAY = 37
+comptime PACKED_VECTOR4_ARRAY = 38#
+
+comptime VARIANT_MAX = 39
 
 
-comptime GDExtensionVariantOperator = UInt8
+comptime VariantOperator = UInt8
 # comparison
-comptime GDEXTENSION_VARIANT_OP_EQUAL = 0
-comptime GDEXTENSION_VARIANT_OP_NOT_EQUAL = 1
-comptime GDEXTENSION_VARIANT_OP_LESS = 2
-comptime GDEXTENSION_VARIANT_OP_LESS_EQUAL = 3
-comptime GDEXTENSION_VARIANT_OP_GREATER = 4
-comptime GDEXTENSION_VARIANT_OP_GREATER_EQUAL = 5
+comptime VARIANT_OP_EQUAL = 0
+comptime VARIANT_OP_NOT_EQUAL = 1
+comptime VARIANT_OP_LESS = 2
+comptime VARIANT_OP_LESS_EQUAL = 3
+comptime VARIANT_OP_GREATER = 4
+comptime VARIANT_OP_GREATER_EQUAL = 5
 # mathematic
-comptime GDEXTENSION_VARIANT_OP_ADD = 6
-comptime GDEXTENSION_VARIANT_OP_SUBTRACT = 7
-comptime GDEXTENSION_VARIANT_OP_MULTIPLY = 8
-comptime GDEXTENSION_VARIANT_OP_DIVIDE = 9
-comptime GDEXTENSION_VARIANT_OP_NEGATE = 10
-comptime GDEXTENSION_VARIANT_OP_POSITIVE = 11
-comptime GDEXTENSION_VARIANT_OP_MODULE = 12
-comptime GDEXTENSION_VARIANT_OP_POWER = 13
+comptime VARIANT_OP_ADD = 6
+comptime VARIANT_OP_SUBTRACT = 7
+comptime VARIANT_OP_MULTIPLY = 8
+comptime VARIANT_OP_DIVIDE = 9
+comptime VARIANT_OP_NEGATE = 10
+comptime VARIANT_OP_POSITIVE = 11
+comptime VARIANT_OP_MODULE = 12
+comptime VARIANT_OP_POWER = 13
 # bitwise
-comptime GDEXTENSION_VARIANT_OP_SHIFT_LEFT = 14
-comptime GDEXTENSION_VARIANT_OP_SHIFT_RIGHT = 15
-comptime GDEXTENSION_VARIANT_OP_BIT_AND = 16
-comptime GDEXTENSION_VARIANT_OP_BIT_OR = 17
-comptime GDEXTENSION_VARIANT_OP_BIT_XOR = 18
-comptime GDEXTENSION_VARIANT_OP_BIT_NEGATE = 19
+comptime VARIANT_OP_SHIFT_LEFT = 14
+comptime VARIANT_OP_SHIFT_RIGHT = 15
+comptime VARIANT_OP_BIT_AND = 16
+comptime VARIANT_OP_BIT_OR = 17
+comptime VARIANT_OP_BIT_XOR = 18
+comptime VARIANT_OP_BIT_NEGATE = 19
 # logic
-comptime GDEXTENSION_VARIANT_OP_AND = 20
-comptime GDEXTENSION_VARIANT_OP_OR = 21
-comptime GDEXTENSION_VARIANT_OP_XOR = 22
-comptime GDEXTENSION_VARIANT_OP_NOT = 23
+comptime VARIANT_OP_AND = 20
+comptime VARIANT_OP_OR = 21
+comptime VARIANT_OP_XOR = 22
+comptime VARIANT_OP_NOT = 23
 # containment
-comptime GDEXTENSION_VARIANT_OP_IN = 24
-comptime GDEXTENSION_VARIANT_OP_MAX = 25
+comptime VARIANT_OP_IN = 24
+comptime VARIANT_OP_MAX = 25
 
 
 # In this API there are multiple functions which expect the caller to pass a pointer
@@ -103,27 +104,27 @@ comptime GDEXTENSION_VARIANT_OP_MAX = 25
 # - Some types have no destructor (see `extension_api.json`'s `has_destructor` field), for
 #   them it is always safe to skip the constructor for the return value if you are in a hurry ;-)
 
-comptime GDExtensionVariantPtr = C_VoidPtr
-comptime GDExtensionConstVariantPtr = C_VoidPtrConst
-comptime GDExtensionUninitializedVariantPtr = C_VoidPtr
-comptime GDExtensionStringNamePtr = C_VoidPtr
-comptime GDExtensionConstStringNamePtr = C_VoidPtrConst
-comptime GDExtensionUninitializedStringNamePtr = C_VoidPtr
-comptime GDExtensionStringPtr = C_VoidPtr
-comptime GDExtensionConstStringPtr = C_VoidPtrConst
-comptime GDExtensionUninitializedStringPtr = C_VoidPtr
-comptime GDExtensionObjectPtr = C_VoidPtr
-comptime GDExtensionConstObjectPtr = C_VoidPtrConst
-comptime GDExtensionUninitializedObjectPtr = C_VoidPtr
-comptime GDExtensionTypePtr = C_VoidPtr
-comptime GDExtensionConstTypePtr = C_VoidPtrConst
-comptime GDExtensionUninitializedTypePtr = C_VoidPtr
-comptime GDExtensionMethodBindPtr = C_VoidPtrConst
-comptime GDExtensionInt = Int64
-comptime GDExtensionBool = UInt8
-comptime GDObjectInstanceID = UInt64
-comptime GDExtensionRefPtr = C_VoidPtr
-comptime GDExtensionConstRefPtr = C_VoidPtrConst
+comptime VariantPtr = VOIDPTR
+comptime ConstVariantPtr = VOIDPTRCONST
+comptime UninitVariantPtr = VOIDPTR
+comptime StringNamePtr = VOIDPTR
+comptime ConstStringNamePtr = VOIDPTRCONST
+comptime UninitStringNamePtr = VOIDPTR
+comptime StringPtr = VOIDPTR
+comptime ConstStringPtr = VOIDPTRCONST
+comptime UninitStringPtr = VOIDPTR
+comptime ObjectPtr = VOIDPTR
+comptime ConstObjectPtr = VOIDPTRCONST
+comptime UninitObjectPtr = VOIDPTR
+comptime TypePtr = VOIDPTR
+comptime ConstTypePtr = VOIDPTRCONST
+comptime UninitTypePtr = VOIDPTR
+comptime MethodBindPtr = VOIDPTRCONST
+comptime GDInt = Int64
+comptime GDBool = UInt8
+comptime ObjectInstanceID = UInt64
+comptime RefPtr = VOIDPTR
+comptime ConstRefPtr = VOIDPTRCONST
 
 # VARIANT DATA I/O
 
@@ -144,96 +145,83 @@ struct GDExtensionCallError:
     var argument: Int32
     var expected: Int32
 
+comptime VariantFromTypeConstructorFunc = def (UninitVariantPtr, TypePtr) thin
+comptime TypeFromVariantConstructorFunc = def (UninitTypePtr, VariantPtr) thin
+comptime VariantGetInternalPtrFunc = def (VariantPtr) thin -> VOIDPTR
+comptime PtrOperatorEvaluator = def (p_left: ConstTypePtr, p_right: ConstTypePtr, r_result: TypePtr) thin
+comptime PtrBuiltInMethod = def (p_base: TypePtr, p_args: PTRCONST[ConstTypePtr], r_return: TypePtr, arg_count: c_int) thin
+comptime PtrConstructor = def (p_base: UninitTypePtr, p_args: PTRCONST[ConstTypePtr]) thin
+comptime PtrDestructor = def (p_base: TypePtr) thin
+comptime PtrSetter = def (p_base: TypePtr, p_value: ConstTypePtr) thin
+comptime PtrGetter = def (p_base: ConstTypePtr, r_value: TypePtr) thin
+comptime PtrIndexedSetter = def (p_base: TypePtr, p_index: GDInt, p_value: ConstTypePtr) thin
+comptime PtrIndexedGetter = def (p_base: ConstTypePtr, p_index: GDInt, r_value: TypePtr) thin
+comptime PtrKeyedSetter = def (p_base: TypePtr, p_key: ConstTypePtr, p_value: ConstTypePtr) thin
+comptime PtrKeyedGetter = def (p_base: ConstTypePtr, p_key: ConstTypePtr, r_value: TypePtr) thin
+comptime PtrKeyedChecker = def (p_base: ConstVariantPtr, p_key: ConstVariantPtr) thin -> UInt32
+comptime PtrUtilityFunction = def (r_return: TypePtr, p_args: PTRCONST[ConstTypePtr], arg_count: c_int) thin
 
-comptime GDExtensionVariantFromTypeConstructorFunc = fn (GDExtensionUninitializedVariantPtr, GDExtensionTypePtr)
-comptime GDExtensionTypeFromVariantConstructorFunc = fn (GDExtensionUninitializedTypePtr, GDExtensionVariantPtr)
-comptime GDExtensionVariantGetInternalPtrFunc = fn (GDExtensionVariantPtr) -> C_VoidPtr
-comptime GDExtensionPtrOperatorEvaluator = fn (p_left: GDExtensionConstTypePtr, p_right: GDExtensionConstTypePtr, r_result: GDExtensionTypePtr)
-comptime GDExtensionPtrBuiltInMethod = fn (p_base: GDExtensionTypePtr, p_args: C_PtrConst[GDExtensionConstTypePtr], r_return: GDExtensionTypePtr, p_argument_count: c_int)
-comptime GDExtensionPtrConstructor = fn (p_base: GDExtensionUninitializedTypePtr, p_args: C_PtrConst[GDExtensionConstTypePtr])
-comptime GDExtensionPtrDestructor = fn (p_base: GDExtensionTypePtr)
-comptime GDExtensionPtrSetter = fn (p_base: GDExtensionTypePtr, p_value: GDExtensionConstTypePtr)
-comptime GDExtensionPtrGetter = fn (p_base: GDExtensionConstTypePtr, r_value: GDExtensionTypePtr)
-comptime GDExtensionPtrIndexedSetter = fn (p_base: GDExtensionTypePtr, p_index: GDExtensionInt, p_value: GDExtensionConstTypePtr)
-comptime GDExtensionPtrIndexedGetter = fn (p_base: GDExtensionConstTypePtr, p_index: GDExtensionInt, r_value: GDExtensionTypePtr)
-comptime GDExtensionPtrKeyedSetter = fn (p_base: GDExtensionTypePtr, p_key: GDExtensionConstTypePtr, p_value: GDExtensionConstTypePtr)
-comptime GDExtensionPtrKeyedGetter = fn (p_base: GDExtensionConstTypePtr, p_key: GDExtensionConstTypePtr, r_value: GDExtensionTypePtr)
-comptime GDExtensionPtrKeyedChecker = fn (p_base: GDExtensionConstVariantPtr, p_key: GDExtensionConstVariantPtr) -> UInt32
-comptime GDExtensionPtrUtilityFunction = fn (r_return: GDExtensionTypePtr, p_args: C_PtrConst[GDExtensionConstTypePtr], p_argument_count: c_int)
+comptime ClassConstructor = def () thin -> ObjectPtr
 
-comptime GDExtensionClassConstructor = fn () -> GDExtensionObjectPtr
-
-comptime GDExtensionInstanceBindingCreateCallback = fn (p_token: C_VoidPtr, p_instance: C_VoidPtr) -> C_VoidPtr
-comptime GDExtensionInstanceBindingFreeCallback = fn (p_token: C_VoidPtr, p_instance: C_VoidPtr, p_binding: C_VoidPtr)
-comptime GDExtensionInstanceBindingReferenceCallback = fn (p_token: C_VoidPtr, p_binding: C_VoidPtr, p_reference: GDExtensionBool) -> GDExtensionBool
+comptime BindingCreateCallback = def (p_token: InstanceBindingPtr, p_instance: VOIDPTR) thin -> VOIDPTR
+comptime InstanceBindFreeCallback = def (p_token: InstanceBindingPtr, p_instance: VOIDPTR, p_binding: VOIDPTR) thin
+comptime InstanceBindRefCallback = def (p_token: InstanceBindingPtr, p_binding: VOIDPTR, p_reference: GDBool) thin -> GDBool
 
 
 @fieldwise_init
-@register_passable("trivial")
-struct GDExtensionInstanceBindingCallbacks:
-    var create_callback: GDExtensionInstanceBindingCreateCallback
-    var free_callback: GDExtensionInstanceBindingFreeCallback
-    var reference_callback: GDExtensionInstanceBindingReferenceCallback
+struct InstanceBindingCallbacks(TrivialRegisterPassable):
+    var create: BindingCreateCallback
+    var free: InstanceBindFreeCallback
+    var reference: InstanceBindRefCallback
 
 
 # EXTENSION CLASSES
 
-comptime GDExtensionClassInstancePtr = C_VoidPtr
-
-comptime GDExtensionClassSet = fn (p_instance: GDExtensionClassInstancePtr, p_name: GDExtensionConstStringNamePtr, p_value: GDExtensionConstVariantPtr) -> GDExtensionBool
-comptime GDExtensionClassGet = fn (p_instance: GDExtensionClassInstancePtr, p_name: GDExtensionConstStringNamePtr, r_ret: GDExtensionVariantPtr) -> GDExtensionBool
-comptime GDExtensionClassGetRID = fn (p_instance: GDExtensionClassInstancePtr) -> UInt64
-
-
-@fieldwise_init
-@register_passable("trivial")
-struct GDExtensionPropertyInfo:
-    var type: GDExtensionVariantType
-    var name: GDExtensionStringNamePtr
-    var class_name: GDExtensionStringNamePtr
-    var hint: UInt32  # Bitfield of `PropertyHint` (defined in `extension_api.json`).
-    var hint_string: GDExtensionStringPtr
-    var usage: UInt32  # Bitfield of `PropertyUsageFlags` (defined in `extension_api.json`).
+comptime ClassInstancePtr = VOIDPTR
+comptime ClassSet = def(instance: MutPtr[NoneType], name: ConstPtr[StringName], value: ConstPtr[Variant]) thin -> GDBool
+comptime ClassGet = def (p_instance: ClassInstancePtr, p_name: ConstStringNamePtr, r_ret: VariantPtr) thin -> GDBool
+comptime ClassGetRID = def (instance: MutPtr[NoneType]) thin -> UInt64
 
 
 @fieldwise_init
-@register_passable("trivial")
-struct GDExtensionMethodInfo:
-    var name: GDExtensionStringNamePtr
-    var return_value: GDExtensionPropertyInfo
+struct PropertyInfo(TrivialRegisterPassable):
+    var variant: VariantType
+    var name: StringNamePtr
+    var class_name: StringNamePtr
+    var hint_string: StringPtr
+    var usage: UInt32 # Bitfield of `PropertyUsageFlags` (defined in `extension_api.json`).
+    var hint: UInt32 # Bitfield of `PropertyHint` (defined in `extension_api.json`).
+
+
+@fieldwise_init
+struct MethodInfo(TrivialRegisterPassable):
     var flags: UInt32  # Bitfield of `GDExtensionClassMethodFlags`.
     var id: Int32
-
-    # Arguments: `default_arguments` is an array of size `argument_count`.
-    var argument_count: UInt32
-    var arguments: C_Ptr[GDExtensionPropertyInfo]
-
-    # Default arguments: `default_arguments` is an array of size `default_argument_count`.
-    var default_argument_count: UInt32
-    var default_arguments: C_Ptr[GDExtensionVariantPtr]
+    var name: StringNamePtr
+    var value: PropertyInfo
 
 
-comptime GDExtensionClassGetPropertyList = fn (p_instance: GDExtensionClassInstancePtr, r_count: C_Ptr[UInt32]) -> C_PtrConst[GDExtensionPropertyInfo]
-comptime GDExtensionClassFreePropertyList = fn (p_instance: GDExtensionClassInstancePtr, p_list: C_PtrConst[GDExtensionPropertyInfo])
-comptime GDExtensionClassFreePropertyList2 = fn (p_instance: GDExtensionClassInstancePtr, p_list: C_PtrConst[GDExtensionPropertyInfo], p_count: UInt32)
-comptime GDExtensionClassPropertyCanRevert = fn (p_instance: GDExtensionClassInstancePtr, p_name: GDExtensionConstStringNamePtr) -> GDExtensionBool
-comptime GDExtensionClassPropertyGetRevert = fn (p_instance: GDExtensionClassInstancePtr, p_name: GDExtensionConstStringNamePtr, r_ret: GDExtensionVariantPtr) -> GDExtensionBool
-comptime GDExtensionClassValidateProperty = fn (p_instance: GDExtensionClassInstancePtr, p_property: C_Ptr[GDExtensionPropertyInfo]) -> GDExtensionBool
-comptime GDExtensionClassNotification = fn (p_instance: GDExtensionClassInstancePtr, p_what: Int32)  # Deprecated. Use GDExtensionClassNotification2 instead.
-comptime GDExtensionClassNotification2 = fn (p_instance: GDExtensionClassInstancePtr, p_what: Int32, p_reversed: GDExtensionBool)
-comptime GDExtensionClassToString = fn (p_instance: GDExtensionClassInstancePtr, r_is_valid: C_Ptr[GDExtensionBool], p_out: GDExtensionStringPtr)
-comptime GDExtensionClassReference = fn (p_instance: GDExtensionClassInstancePtr)
-comptime GDExtensionClassUnreference = fn (p_instance: GDExtensionClassInstancePtr)
-comptime GDExtensionClassCallVirtual = fn (p_instance: GDExtensionClassInstancePtr, p_args: C_PtrConst[GDExtensionConstTypePtr], r_ret: GDExtensionTypePtr)
-comptime GDExtensionClassCreateInstance = fn (p_class_userdata: C_VoidPtr) -> GDExtensionObjectPtr
-comptime GDExtensionClassCreateInstance2 = fn (p_class_userdata: C_VoidPtr, p_notify_postinitialize: GDExtensionBool) -> GDExtensionObjectPtr
-comptime GDExtensionClassFreeInstance = fn (p_class_userdata: C_VoidPtr, p_instance: GDExtensionClassInstancePtr)
-comptime GDExtensionClassRecreateInstance = fn (p_class_userdata: C_VoidPtr, p_object: GDExtensionObjectPtr) -> GDExtensionClassInstancePtr
-comptime GDExtensionClassGetVirtual = fn (p_class_userdata: C_VoidPtr, p_name: GDExtensionConstStringNamePtr) -> GDExtensionClassCallVirtual
-comptime GDExtensionClassGetVirtual2 = fn (p_class_userdata: C_VoidPtr, p_name: GDExtensionConstStringNamePtr, p_hash: UInt32) -> GDExtensionClassCallVirtual
-comptime GDExtensionClassGetVirtualCallData = fn (p_class_userdata: C_VoidPtr, p_name: GDExtensionConstStringNamePtr) -> C_VoidPtr
-comptime GDExtensionClassGetVirtualCallData2 = fn (p_class_userdata: C_VoidPtr, p_name: GDExtensionConstStringNamePtr, p_hash: UInt32) -> C_VoidPtr
-comptime GDExtensionClassCallVirtualWithData = fn (p_instance: GDExtensionClassInstancePtr, p_name: GDExtensionConstStringNamePtr, p_virtual_call_userdata: C_VoidPtr, p_args: C_PtrConst[GDExtensionConstTypePtr], r_ret: GDExtensionTypePtr)
+comptime ClassGetPropertyList = def (p_instance: ClassInstancePtr, r_count: PTR[UInt32]) thin -> PTRCONST[PropertyInfo]
+comptime ClassFreePropertyList = def (p_instance: ClassInstancePtr, p_list: PTRCONST[PropertyInfo]) thin
+comptime ClassFreePropertyList2 = def (p_instance: ClassInstancePtr, p_list: PTRCONST[PropertyInfo], p_count: UInt32) thin
+comptime ClassPropertyCanRevert = def (p_instance: ClassInstancePtr, p_name: ConstStringNamePtr) thin -> GDBool
+comptime ClassPropertyGetRevert = def (p_instance: ClassInstancePtr, p_name: ConstStringNamePtr, r_ret: VariantPtr) thin -> GDBool
+comptime ClassValidateProperty = def (p_instance: ClassInstancePtr, p_property: PTR[PropertyInfo]) thin -> GDBool
+comptime ClassNotification = def (p_instance: ClassInstancePtr, p_what: Int32)  # Deprecated. Use GDExtensionClassNotification2 instead.
+comptime ClassNotification2 = def (p_instance: ClassInstancePtr, p_what: Int32, p_reversed: GDBool) thin
+comptime ClassToString = def (p_instance: ClassInstancePtr, r_is_valid: PTR[GDBool], p_out: StringPtr) thin
+comptime ClassReference = def (p_instance: ClassInstancePtr) thin
+comptime ClassUnreference = def (p_instance: ClassInstancePtr) thin
+comptime ClassCallVirtual = def (p_instance: ClassInstancePtr, p_args: PTRCONST[ConstTypePtr], r_ret: TypePtr)
+comptime ClassCreateInstance = def (p_class_userdata: VOIDPTR) thin -> ObjectPtr
+comptime ClassCreateInstance2 = def (p_class_userdata: VOIDPTR, pGDBool_notify_postinitialize: GDBool) -> ObjectPtr
+comptime ClassFreeInstance = def (p_class_userdata: VOIDPTR, p_instance: ClassInstancePtr) thin
+comptime ClassRecreateInstance = def (p_class_userdata: VOIDPTR, p_object: ObjectPtr) thin -> ClassInstancePtr
+comptime ClassGetVirtual = def (p_class_userdata: VOIDPTR, p_name: ConstStringNamePtr) thin -> ClassCallVirtual
+comptime ClassGetVirtual2 = def (p_class_userdata: VOIDPTR, p_name: ConstStringNamePtr, p_hash: UInt32) thin -> ClassCallVirtual
+comptime ClassGetVirtualCallData = def (p_class_userdata: VOIDPTR, p_name: ConstStringNamePtr) thin -> VOIDPTR
+comptime ClassGetVirtualCallData2 = def (p_class_userdata: VOIDPTR, p_name: ConstStringNamePtr, p_hash: UInt32) thin -> VOIDPTR
+comptime ClassCallVirtualWithData = def (p_instance: ClassInstancePtr, p_name: ConstStringNamePtr, p_virtual_call_userdata: VOIDPTR, p_args: PTRCONST[ConstTypePtr], r_ret: TypePtr) thin
 
 
 @deprecated("Deprecated. Use GDExtensionClassCreationInfo4 instead.")
@@ -333,135 +321,126 @@ struct GDExtensionClassCreationInfo3:
 
 
 @fieldwise_init
-@register_passable("trivial")
-struct GDExtensionClassCreationInfo4:
-    var is_virtual: GDExtensionBool
-    var is_abstract: GDExtensionBool
-    var is_exposed: GDExtensionBool
-    var is_runtime: GDExtensionBool
-    var icon_path: GDExtensionConstStringPtr
-    var set_func: GDExtensionClassSet
-    var get_func: GDExtensionClassGet
-    var get_property_list_func: GDExtensionClassGetPropertyList
-    var free_property_list_func: GDExtensionClassFreePropertyList2
-    var property_can_revert_func: GDExtensionClassPropertyCanRevert
-    var property_get_revert_func: GDExtensionClassPropertyGetRevert
-    var validate_property_func: GDExtensionClassValidateProperty
-    var notification_func: GDExtensionClassNotification2
-    var to_string_func: GDExtensionClassToString
-    var reference_func: GDExtensionClassReference
-    var unreference_func: GDExtensionClassUnreference
-    var create_instance_func: GDExtensionClassCreateInstance2  # (Default) constructor; mandatory. If the class is not instantiable, consider making it virtual or abstract.
-    var free_instance_func: GDExtensionClassFreeInstance  # Destructor; mandatory.
-    var recreate_instance_func: GDExtensionClassRecreateInstance
+struct ClassCreationInfo(TrivialRegisterPassable):
+    var is_virtual: GDBool
+    var is_abstract: GDBool
+    var is_exposed: GDBool
+    var is_runtime: GDBool
+    var icon_path: ConstStringPtr
+    var set_func: ClassSet
+    var get_func: ClassGet
+    var get_prop_list: ClassGetPropertyList
+    var free_prop_list: ClassFreePropertyList2
+    var prop_can_revert: ClassPropertyCanRevert
+    var prop_get_revert: ClassPropertyGetRevert
+    var validate_prop: ClassValidateProperty
+    var notify: ClassNotification2
+    var to_string: ClassToString
+    var reference: ClassReference
+    var unreference: ClassUnreference
+    var create_instance: ClassCreateInstance
+    var free_instance: ClassFreeInstance
+    var recreate_instance: ClassRecreateInstance
     # Queries a virtual function by name and returns a callback to invoke the requested virtual function.
-    var get_virtual_func: GDExtensionClassGetVirtual2
+    var get_virtual: ClassGetVirtual
     # Paired with `call_virtual_with_data_func`, this is an alternative to `get_virtual_func` for extensions that
     # need or benefit from extra data when calling virtual functions.
     # Returns user data that will be passed to `call_virtual_with_data_func`.
     # Returning `NULL` from this function signals to Godot that the virtual function is not overridden.
     # Data returned from this function should be managed by the extension and must be valid until the extension is deinitialized.
     # You should supply either `get_virtual_func`, or `get_virtual_call_data_func` with `call_virtual_with_data_func`.
-    var get_virtual_call_data_func: GDExtensionClassGetVirtualCallData2
+    var get_virtual_call_data: ClassGetVirtualCallData
     # Used to call virtual functions when `get_virtual_call_data_func` is not null.
-    var call_virtual_with_data_func: GDExtensionClassCallVirtualWithData
-    var class_userdata: C_VoidPtr  # Per-class user data, later accessible in instance bindings.
+    var free_prop_list: ClassFreePropertyList2
+    var validate_prop: ClassValidateProperty
 
 
-comptime GDExtensionClassCreationInfo5 = GDExtensionClassCreationInfo4
+comptime ClassCreationInfo5 = ClassCreationInfo
 
-comptime GDExtensionClassLibraryPtr = C_VoidPtr
+comptime ClassLibraryPtr = VOIDPTR
 
 # Passed a pointer to a PackedStringArray that should be filled with the classes that may be used by the GDExtension.
-comptime GDExtensionEditorGetClassesUsedCallback = fn (p_packed_string_array: GDExtensionTypePtr)
+comptime EditorGetClassesUsedCallback = def (packed_string_array: TypePtr) thin
 
 # Method
 
-comptime GDExtensionClassMethodFlags = UInt8
-comptime GDEXTENSION_METHOD_FLAG_NORMAL = 1
-comptime GDEXTENSION_METHOD_FLAG_EDITOR = 2
-comptime GDEXTENSION_METHOD_FLAG_CONST = 4
-comptime GDEXTENSION_METHOD_FLAG_VIRTUAL = 8
-comptime GDEXTENSION_METHOD_FLAG_VARARG = 16
-comptime GDEXTENSION_METHOD_FLAG_STATIC = 32
-comptime GDEXTENSION_METHOD_FLAGS_DEFAULT = GDEXTENSION_METHOD_FLAG_NORMAL
+comptime ClassMethodFlags = UInt8
+comptime FLAG_NORMAL = 1
+comptime FLAG_EDITOR = 2
+comptime FLAG_CONST = 4
+comptime FLAG_VIRTUAL = 8
+comptime FLAG_VARARG = 16
+comptime FLAG_STATIC = 32
+comptime FLAGS_DEFAULT = FLAG_NORMAL
 
-comptime GDExtensionClassMethodArgumentMetadata = UInt8
-comptime GDEXTENSION_METHOD_ARGUMENT_METADATA_NONE: UInt8 = 0
-comptime GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_INT8: UInt8 = 1
-comptime GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_INT16: UInt8 = 2
-comptime GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_INT32: UInt8 = 3
-comptime GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_INT64: UInt8 = 4
-comptime GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_UINT8: UInt8 = 5
-comptime GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_UINT16: UInt8 = 6
-comptime GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_UINT32: UInt8 = 7
-comptime GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_UINT64: UInt8 = 8
-comptime GDEXTENSION_METHOD_ARGUMENT_METADATA_REAL_IS_FLOAT: UInt8 = 9
-comptime GDEXTENSION_METHOD_ARGUMENT_METADATA_REAL_IS_DOUBLE: UInt8 = 10
-comptime GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_CHAR16: UInt8 = 11
-comptime GDEXTENSION_METHOD_ARGUMENT_METADATA_INT_IS_CHAR32: UInt8 = 12
+comptime ClassMethodArgumentMetadata = UInt8
+comptime METADATA_NONE: UInt8 = 0
+comptime METADATA_INT_IS_INT8: UInt8 = 1
+comptime METADATA_INT_IS_INT16: UInt8 = 2
+comptime METADATA_INT_IS_INT32: UInt8 = 3
+comptime METADATA_INT_IS_INT64: UInt8 = 4
+comptime METADATA_INT_IS_UINT8: UInt8 = 5
+comptime METADATA_INT_IS_UINT16: UInt8 = 6
+comptime METADATA_INT_IS_UINT32: UInt8 = 7
+comptime METADATA_INT_IS_UINT64: UInt8 = 8
+comptime METADATA_REAL_IS_FLOAT: UInt8 = 9
+comptime METADATA_REAL_IS_DOUBLE: UInt8 = 10
+comptime METADATA_INT_IS_CHAR16: UInt8 = 11
+comptime METADATA_INT_IS_CHAR32: UInt8 = 12
 
-comptime GDExtensionClassMethodCall = fn (method_userdata: C_VoidPtr, p_instance: GDExtensionClassInstancePtr, p_args: C_PtrConst[GDExtensionConstVariantPtr], p_argument_count: GDExtensionInt, r_return: GDExtensionVariantPtr, r_error: C_Ptr[GDExtensionCallError])
-comptime GDExtensionClassMethodValidatedCall = fn (method_userdata: C_VoidPtr, p_instance: GDExtensionClassInstancePtr, p_args: C_PtrConst[GDExtensionConstVariantPtr], r_return: GDExtensionVariantPtr)
-comptime GDExtensionClassMethodPtrCall = fn (method_userdata: C_VoidPtr, p_instance: GDExtensionClassInstancePtr, p_args: C_PtrConst[GDExtensionConstTypePtr], r_ret: GDExtensionTypePtr)
+comptime ClassMethodCall = def (userdata: VOIDPTR, instance: VOIDPTR, args: PTRCONST[ConstVariantPtr], count: GDInt, r_ret: VariantPtr, r_error: CallError) thin
+comptime ClassMethodValidateCall = def (userdata: VOIDPTR, instance: VOIDPTR, args: PTRCONST[ConstVariantPtr], r_ret: VariantPtr) thin
+comptime ClassMethodPtrCall = def (userdata: VOIDPTR, instance: VOIDPTR, args: PTRCONST[ConstVariantPtr], r_ret: TypePtr) thin
 
 
 @fieldwise_init
-@register_passable("trivial")
-struct GDExtensionClassMethodInfo:
-    var name: GDExtensionStringNamePtr
-    var method_userdata: C_VoidPtr
-    var call_func: GDExtensionClassMethodCall
-    var ptrcall_func: GDExtensionClassMethodPtrCall
-    var method_flags: UInt32  # Bitfield of `GDExtensionClassMethodFlags`.
+struct ClassMethodInfo(TrivialRegisterPassable):
+    var name: StringNamePtr
+    var userdata: VOIDPTR
+    var call: ClassMethodCall
+    var ptrcall: ClassMethodPtrCall
+    var flag: UInt
 
     # If `has_return_value` is false, `return_value_info` and `return_value_metadata` are ignored.
     #
     # @todo Consider dropping `has_return_value` and making the other two properties match `GDExtensionMethodInfo` and `GDExtensionClassVirtualMethod` for consistency in future version of this struct.
     #
-    var has_return_value: GDExtensionBool
-    var return_value_info: C_Ptr[GDExtensionPropertyInfo]
-    var return_value_metadata: GDExtensionClassMethodArgumentMetadata
+    var has_ret_value: GDBool
+    var ret_value_info: PTR[PropertyInfo]
+    var ret_value_metadata: ClassMethodArgumentMetadata
 
     # Arguments: `arguments_info` and `arguments_metadata` are array of size `argument_count`.
     # Name and hint information for the argument can be omitted in release builds. Class name should always be present if it applies.
     #
-    # @todo Consider renaming `arguments_info` to `arguments` for consistency in future version of this struct.
+    # @todo Consider renaming `arg_info` to `arguments` for consistency in future version of this struct.
     #
-    var argument_count: UInt32
-    var arguments_info: C_Ptr[GDExtensionPropertyInfo]
-    var arguments_metadata: C_Ptr[GDExtensionClassMethodArgumentMetadata]
+    var arg_count: UInt
+    var arg_metadata: PTR[ClassMethodArgumentMetadata]
+    var arg_info: PTR[PropertyInfo]
 
-    # Default arguments: `default_arguments` is an array of size `default_argument_count`.
-    var default_argument_count: UInt32
-    var default_arguments: C_Ptr[GDExtensionVariantPtr]
+    # Default arguments: `default_args` is an array of size `default_count`.
+    var default_count: UInt
+    var default_arg: PTR[VariantPtr]
 
 
 @fieldwise_init
-@register_passable("trivial")
-struct GDExtensionClassVirtualMethodInfo:
-    var name: GDExtensionStringNamePtr
-    var method_flags: UInt32  # Bitfield of `GDExtensionClassMethodFlags`.
-
-    var return_value: GDExtensionPropertyInfo
-    var return_value_metadata: GDExtensionClassMethodArgumentMetadata
-
-    var argument_count: UInt32
-    var arguments: C_Ptr[GDExtensionPropertyInfo]
-    var arguments_metadata: C_Ptr[GDExtensionClassMethodArgumentMetadata]
+struct ClassVirtualMethodInfo[value_metadata: ClassMethodFlags](TrivialRegisterPassable):
+    var name: StringNamePtr
+    var method_flags: UInt
+    var ret_value: PropertyInfo
+    var arg_count: UInt
+    var arg_info: PTR[PropertyInfo]
+    var arg_metadata: PTR[ClassMethodArgumentMetadata]
 
 
-comptime GDExtensionCallableCustomCall = fn (callable_userdata: C_VoidPtr, p_args: C_PtrConst[GDExtensionConstVariantPtr], p_argument_count: GDExtensionInt, r_return: GDExtensionVariantPtr, r_error: C_Ptr[GDExtensionCallError])
-comptime GDExtensionCallableCustomIsValid = fn (callable_userdata: C_VoidPtr) -> GDExtensionBool
-comptime GDExtensionCallableCustomFree = fn (callable_userdata: C_VoidPtr)
-
-comptime GDExtensionCallableCustomHash = fn (callable_userdata: C_VoidPtr) -> UInt32
-comptime GDExtensionCallableCustomEqual = fn (callable_userdata_a: C_VoidPtr, callable_userdata_b: C_VoidPtr) -> GDExtensionBool
-comptime GDExtensionCallableCustomLessThan = fn (callable_userdata_a: C_VoidPtr, callable_userdata_b: C_VoidPtr) -> GDExtensionBool
-
-comptime GDExtensionCallableCustomToString = fn (callable_userdata: C_VoidPtr, r_is_valid: C_Ptr[GDExtensionBool], r_out: GDExtensionStringPtr)
-
-comptime GDExtensionCallableCustomGetArgumentCount = fn (callable_userdata: C_VoidPtr, r_is_valid: C_Ptr[GDExtensionBool]) -> GDExtensionInt
+comptime CallableCustomCall = def (userdata: VOIDPTR, args: PTRCONST[ConstVariantPtr], arg_count: GDInt, ret: VariantPtr, r_error: PTR[CallError]) thin
+comptime CallableCustomIsValid = def (userdata: VOIDPTR) thin -> GDBool
+comptime CallableCustomFree = def (userdata: VOIDPTR) thin
+comptime CallableCustomHash = def (userdata: VOIDPTR) thin -> UInt
+comptime CallableCustomEqual = def (userdata_a: VOIDPTR, userdata_b: VOIDPTR) thin -> GDBool
+comptime CallableCustomLessThan = def (userdata_a: VOIDPTR, userdata_b: VOIDPTR) thin -> GDBool
+comptime CallableCustomToString = def (userdata: VOIDPTR, is_valid: PTR[GDBool], r_out: StringPtr) thin
+comptime CallableCustomGetArgCount = def (userdata: VOIDPTR, is_valid: PTR[GDBool]) thin -> GDInt
 
 
 @deprecated("Deprecated. Use GDExtensionCallableCustomInfo2 instead.")
@@ -499,8 +478,7 @@ struct GDExtensionCallableCustomInfo:
 
 
 @fieldwise_init
-@register_passable("trivial")
-struct GDExtensionCallableCustomInfo2:
+struct CallableCustomInfo[](TrivialRegisterPassable):
     # Only `call_func` and `token` are strictly required, however, `object_id` should be passed if its not a static method.
     #
     # `token` should point to an address that uniquely identifies the GDExtension (for example, the
@@ -515,71 +493,61 @@ struct GDExtensionCallableCustomInfo2:
     #
     # `free_func` is necessary if `callable_userdata` needs to be cleaned up when the callable is freed.
     #
-    var callable_userdata: C_VoidPtr
-    var token: C_VoidPtr
+    var userdata: VOIDPTR
+    var token: VOIDPTR
+    var object_id: ObjectInstanceID
 
-    var object_id: GDObjectInstanceID
+    var call_func: CallableCustomCall
+    var is_valid_func: CallableCustomIsValid
+    var free_func: CallableCustomFree
 
-    var call_func: GDExtensionCallableCustomCall
-    var is_valid_func: GDExtensionCallableCustomIsValid
-    var free_func: GDExtensionCallableCustomFree
+    var hash_func: CallableCustomHash
+    var equal_func: CallableCustomEqual
+    var less_than_func: CallableCustomLessThan
 
-    var hash_func: GDExtensionCallableCustomHash
-    var equal_func: GDExtensionCallableCustomEqual
-    var less_than_func: GDExtensionCallableCustomLessThan
+    var to_string_func: CallableCustomToString
 
-    var to_string_func: GDExtensionCallableCustomToString
-
-    var get_argument_count_func: GDExtensionCallableCustomGetArgumentCount
+    var get_argument_count_func: CallableCustomGetArgumentCount
 
 
 # SCRIPT INSTANCE EXTENSION
 
-comptime GDExtensionScriptInstanceDataPtr = C_VoidPtr  # Pointer to custom ScriptInstance native implementation.
+comptime ScriptInstanceDataPtr = VOIDPTR  # Pointer to custom ScriptInstance native implementation.
+comptime ScriptInstanceSet = def (instance: ScriptInstanceDataPtr, name: ConstStringNamePtr, value: ConstVariantPtr)thin -> GDBool
+comptime ScriptInstanceGet = def (instance: ScriptInstanceDataPtr, name: ConstStringNamePtr, ret: VariantPtr) thin -> GDBool
+comptime ScriptInstanceGetPropertyList = def (instance: ScriptInstanceDataPtr, count: PTR[UInt32]) thin -> PTRCONST[PropertyInfo]
+comptime ScriptInstanceFreePropertyList = def (instance: ScriptInstanceDataPtr, p_list: PTRCONST[PropertyInfo], p_count: UInt32) thin
+comptime ScriptInstanceGetClassCategory = def (instance: ScriptInstanceDataPtr, class_category: PTR[PropertyInfo]) thin -> GDBool
 
-comptime GDExtensionScriptInstanceSet = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_name: GDExtensionConstStringNamePtr, p_value: GDExtensionConstVariantPtr) -> GDExtensionBool
-comptime GDExtensionScriptInstanceGet = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_name: GDExtensionConstStringNamePtr, r_ret: GDExtensionVariantPtr) -> GDExtensionBool
-comptime GDExtensionScriptInstanceGetPropertyList = fn (p_instance: GDExtensionScriptInstanceDataPtr, r_count: C_Ptr[UInt32]) -> C_PtrConst[GDExtensionPropertyInfo]
-comptime GDExtensionScriptInstanceFreePropertyList = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_list: C_PtrConst[GDExtensionPropertyInfo])  # Deprecated. Use GDExtensionScriptInstanceFreePropertyList2 instead.
-comptime GDExtensionScriptInstanceFreePropertyList2 = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_list: C_PtrConst[GDExtensionPropertyInfo], p_count: UInt32)
-comptime GDExtensionScriptInstanceGetClassCategory = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_class_category: C_Ptr[GDExtensionPropertyInfo]) -> GDExtensionBool
+comptime ScriptInstanceGetPropertyType = def (instance: ScriptInstanceDataPtr, p_name: ConstStringNamePtr, r_is_valid: PTR[GDBool]) thin -> VariantType
+comptime ScriptInstanceValidateProperty = def (instance: ScriptInstanceDataPtr, p_property: PTR[PropertyInfo]) thin -> GDBool
 
-comptime GDExtensionScriptInstanceGetPropertyType = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_name: GDExtensionConstStringNamePtr, r_is_valid: C_Ptr[GDExtensionBool]) -> GDExtensionVariantType
-comptime GDExtensionScriptInstanceValidateProperty = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_property: C_Ptr[GDExtensionPropertyInfo]) -> GDExtensionBool
+comptime ScriptInstancePropertyCanRevert = def (instance: ScriptInstanceDataPtr, p_name: ConstStringNamePtr) thin -> GDBool
+comptime ScriptInstancePropertyGetRevert = def (instance: ScriptInstanceDataPtr, p_name: ConstStringNamePtr, r_ret: VariantPtr) thin -> GDBool
+comptime ScriptInstanceGetOwner = def (instance: ScriptInstanceDataPtr) thin -> ObjectPtr
+comptime ScriptInstancePropertyStateAdd = def (name: ConstStringNamePtr, p_value: ConstVariantPtr, p_userdata: VOIDPTR) thin
+comptime ScriptInstanceGetPropertyState = def (instance: ScriptInstanceDataPtr, p_add_func: ScriptInstancePropertyStateAdd, p_userdata: VOIDPTR) thin
 
-comptime GDExtensionScriptInstancePropertyCanRevert = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_name: GDExtensionConstStringNamePtr) -> GDExtensionBool
-comptime GDExtensionScriptInstancePropertyGetRevert = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_name: GDExtensionConstStringNamePtr, r_ret: GDExtensionVariantPtr) -> GDExtensionBool
+comptime ScriptInstanceGetMethodList = def (instance: ScriptInstanceDataPtr, r_count: PTR[UInt32]) thin -> PTRCONST[MethodInfo]
+comptime ScriptInstanceFreeMethodList = def (instance: ScriptInstanceDataPtr, p_list: PTRCONST[MethodInfo], p_count: UInt32) thin
+comptime ScriptInstanceHasMethod = def (instance: ScriptInstanceDataPtr, p_name: ConstStringNamePtr) thin -> GDBool
 
-comptime GDExtensionScriptInstanceGetOwner = fn (p_instance: GDExtensionScriptInstanceDataPtr) -> GDExtensionObjectPtr
-comptime GDExtensionScriptInstancePropertyStateAdd = fn (p_name: GDExtensionConstStringNamePtr, p_value: GDExtensionConstVariantPtr, p_userdata: C_VoidPtr)
-comptime GDExtensionScriptInstanceGetPropertyState = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_add_func: GDExtensionScriptInstancePropertyStateAdd, p_userdata: C_VoidPtr)
+comptime ScriptInstanceGetMethodArgumentCount = def (instance: ScriptInstanceDataPtr, p_name: ConstStringNamePtr, r_is_valid: PTR[GDBool]) thin -> GDInt
+comptime ScriptInstanceCall = def (p_self: VOIDPTR, p_method: ConstStringNamePtr, p_args: PTRCONST[ConstVariantPtr], p_argument_count: GDInt, r_return: VariantPtr, r_error: PTR[CallError]) thin
+comptime ScriptInstanceNotification = def (instance: ScriptInstanceDataPtr, p_what: Int32, p_reversed: GDBool) thin
+comptime ScriptInstanceToString = def (instance: ScriptInstanceDataPtr, r_is_valid: PTR[GDBool], r_out: StringPtr) thin
 
-comptime GDExtensionScriptInstanceGetMethodList = fn (p_instance: GDExtensionScriptInstanceDataPtr, r_count: C_Ptr[UInt32]) -> C_PtrConst[GDExtensionMethodInfo]
-comptime GDExtensionScriptInstanceFreeMethodList = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_list: C_PtrConst[GDExtensionMethodInfo])  # Deprecated. Use GDExtensionScriptInstanceFreeMethodList2 instead.
-comptime GDExtensionScriptInstanceFreeMethodList2 = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_list: C_PtrConst[GDExtensionMethodInfo], p_count: UInt32)
+comptime ScriptInstanceRefCountIncremented = def (p_instance: ScriptInstanceDataPtr) thin
+comptime ScriptInstanceRefCountDecremented = def (p_instance: ScriptInstanceDataPtr) thin -> GDBool
 
-comptime GDExtensionScriptInstanceHasMethod = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_name: GDExtensionConstStringNamePtr) -> GDExtensionBool
+comptime ScriptInstanceGetScript = def (instance: ScriptInstanceDataPtr) thin -> ObjectPtr
+comptime ScriptInstanceIsPlaceholder = def (p_instance: ScriptInstanceDataPtr) thin -> GDBool
+comptime ScriptInstanceGetLanguage = def (p_instance: ScriptInstanceDataPtr) thin -> VOIDPTR
 
-comptime GDExtensionScriptInstanceGetMethodArgumentCount = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_name: GDExtensionConstStringNamePtr, r_is_valid: C_Ptr[GDExtensionBool]) -> GDExtensionInt
+comptime ScriptInstanceGetLanguage = fn (p_instance: ScriptInstanceDataPtr) -> ScriptLanguagePtr
 
-comptime GDExtensionScriptInstanceCall = fn (p_self: GDExtensionScriptInstanceDataPtr, p_method: GDExtensionConstStringNamePtr, p_args: C_PtrConst[GDExtensionConstVariantPtr], p_argument_count: GDExtensionInt, r_return: GDExtensionVariantPtr, r_error: C_Ptr[GDExtensionCallError])
-comptime GDExtensionScriptInstanceNotification = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_what: Int32)  # Deprecated. Use GDExtensionScriptInstanceNotification2 instead.
-comptime GDExtensionScriptInstanceNotification2 = fn (p_instance: GDExtensionScriptInstanceDataPtr, p_what: Int32, p_reversed: GDExtensionBool)
-comptime GDExtensionScriptInstanceToString = fn (p_instance: GDExtensionScriptInstanceDataPtr, r_is_valid: C_Ptr[GDExtensionBool], r_out: GDExtensionStringPtr)
-
-comptime GDExtensionScriptInstanceRefCountIncremented = fn (p_instance: GDExtensionScriptInstanceDataPtr)
-comptime GDExtensionScriptInstanceRefCountDecremented = fn (p_instance: GDExtensionScriptInstanceDataPtr) -> GDExtensionBool
-
-comptime GDExtensionScriptInstanceGetScript = fn (p_instance: GDExtensionScriptInstanceDataPtr) -> GDExtensionObjectPtr
-comptime GDExtensionScriptInstanceIsPlaceholder = fn (p_instance: GDExtensionScriptInstanceDataPtr) -> GDExtensionBool
-
-comptime GDExtensionScriptLanguagePtr = C_VoidPtr
-
-comptime GDExtensionScriptInstanceGetLanguage = fn (p_instance: GDExtensionScriptInstanceDataPtr) -> GDExtensionScriptLanguagePtr
-
-comptime GDExtensionScriptInstanceFree = fn (p_instance: GDExtensionScriptInstanceDataPtr)
-
-comptime GDExtensionScriptInstancePtr = C_VoidPtr  # Pointer to ScriptInstance.
+comptime ScriptInstanceFree = def (p_instance: ScriptInstanceDataPtr) thin
+comptime ScriptInstancePtr = VOIDPTR  # Pointer to ScriptInstance.
 
 
 @deprecated("Deprecated. Use GDExtensionScriptInstanceInfo3 instead.")
@@ -667,80 +635,72 @@ struct GDExtensionScriptInstanceInfo2:
 
 
 @fieldwise_init
-@register_passable("trivial")
-struct GDExtensionScriptInstanceInfo3:
-    var set_func: GDExtensionScriptInstanceSet
-    var get_func: GDExtensionScriptInstanceGet
-    var get_property_list_func: GDExtensionScriptInstanceGetPropertyList
-    var free_property_list_func: GDExtensionScriptInstanceFreePropertyList2
-    var get_class_category_func: GDExtensionScriptInstanceGetClassCategory  # Optional. Set to NULL for the default behavior.
+struct ScriptInstanceInfo(TrivialRegisterPassable):
+    var set_func: ScriptInstanceSet
+    var get_func: ScriptInstanceGet
 
-    var property_can_revert_func: GDExtensionScriptInstancePropertyCanRevert
-    var property_get_revert_func: GDExtensionScriptInstancePropertyGetRevert
+    var get_prop_list: ScriptInstanceGetPropertyList
+    var free_prop_list: ScriptInstanceFreePropertyList
+    var get_class_category: ScriptInstanceGetClassCategory # Optional. Set to NULL for the default behavior.
 
-    var get_owner_func: GDExtensionScriptInstanceGetOwner
-    var get_property_state_func: GDExtensionScriptInstanceGetPropertyState
+    var prop_can_revert: ScriptInstancePropertyCanRevert
+    var property_get_revert: ScriptInstancePropertyGetRevert
+    var get_owner_func: ScriptInstanceGetOwner
+    var get_property_state_func: ScriptInstanceGetPropertyState
+    var get_method_list_func: ScriptInstanceGetMethodList
+    var free_method_list_func: ScriptInstanceFreeMethodList
+    var get_property_type_func: ScriptInstanceGetPropertyType
 
-    var get_method_list_func: GDExtensionScriptInstanceGetMethodList
-    var free_method_list_func: GDExtensionScriptInstanceFreeMethodList2
-    var get_property_type_func: GDExtensionScriptInstanceGetPropertyType
-    var validate_property_func: GDExtensionScriptInstanceValidateProperty
-
-    var has_method_func: GDExtensionScriptInstanceHasMethod
-
-    var get_method_argument_count_func: GDExtensionScriptInstanceGetMethodArgumentCount
-
-    var call_func: GDExtensionScriptInstanceCall
-    var notification_func: GDExtensionScriptInstanceNotification2
-
-    var to_string_func: GDExtensionScriptInstanceToString
-
-    var refcount_incremented_func: GDExtensionScriptInstanceRefCountIncremented
-    var refcount_decremented_func: GDExtensionScriptInstanceRefCountDecremented
-
-    var get_script_func: GDExtensionScriptInstanceGetScript
-
-    var is_placeholder_func: GDExtensionScriptInstanceIsPlaceholder
-
-    var set_fallback_func: GDExtensionScriptInstanceSet
-    var get_fallback_func: GDExtensionScriptInstanceGet
-
-    var get_language_func: GDExtensionScriptInstanceGetLanguage
-
-    var free_func: GDExtensionScriptInstanceFree
+    var has_method: ScriptInstanceHasMethod
+    var get_method_arg_count: ScriptInstanceGetMethodArgumentCount
+    
+    var call: ScriptInstanceCall
+    var notification: ScriptInstanceNotification
+    var to_string: ScriptInstanceToString
+    
+    var refcount_increment: ScriptInstanceRefCountIncremented
+    var ref_count_decrement: ScriptInstanceRefCountDecremented
+    
+    var get_script: ScriptInstanceGetScript
+    var is_placeholder: ScriptInstanceIsPlaceholder
+    
+    var set_fallback: ScriptInstanceSet
+    var get_fallback: ScriptInstanceGet
+    var get_language: ScriptInstanceGetLanguage
+    
+    var free_func: ScriptInstanceFree
 
 
-comptime GDExtensionWorkerThreadPoolGroupTask = fn (C_VoidPtr, UInt32)
-comptime GDExtensionWorkerThreadPoolTask = fn (C_VoidPtr)
+comptime WorkerThreadPoolGroupTask = def(VOIDPTR, UInt) thin
+comptime WorkerThreadPoolTask = def (VOIDPTR) thin
 
 # INITIALIZATION
 
-comptime GDExtensionInitializationLevel = UInt8
-comptime GDEXTENSION_INITIALIZATION_CORE = 0
-comptime GDEXTENSION_INITIALIZATION_SERVERS = 1
-comptime GDEXTENSION_INITIALIZATION_SCENE = 2
-comptime GDEXTENSION_INITIALIZATION_EDITOR = 3
-comptime GDEXTENSION_MAX_INITIALIZATION_LEVEL = 4
+comptime InitializationLevel = UInt8
+comptime INITIALIZATION_CORE = 0
+comptime INITIALIZATION_SERVERS = 1
+comptime INITIALIZATION_SCENE = 2
+comptime INITIALIZATION_EDITOR = 3
+comptime MAX_INITIALIZATION_LEVEL = 4
 
-comptime GDExtensionInitializeCallback = fn (p_userdata: C_VoidPtr, p_level: GDExtensionInitializationLevel)
-comptime GDExtensionDeinitializeCallback = fn (p_userdata: C_VoidPtr, p_level: GDExtensionInitializationLevel)
+comptime InitCallback = def( userdata: VOIDPTR, level: InitializationLevel) thin
+comptime DeinitCallback = def (userdata: VOIDPTR, level: InitializationLevel) thin
 
 
 @fieldwise_init
-@register_passable("trivial")
-struct GDExtensionInitialization:
+struct Initialization(TrivialRegisterPassable):
     # Minimum initialization level required.
     # If Core or Servers, the extension needs editor or game restart to take effect */
-    var minimum_initialization_level: GDExtensionInitializationLevel
+    var min_init_level: InitializationLevel
     # Up to the user to supply when initializing */
-    var userdata: C_VoidPtr
+    var userdata: VOIDPTR
     # This function will be called multiple times for each initialization level. */
-    var initialize: GDExtensionInitializeCallback
-    var deinitialize: GDExtensionDeinitializeCallback
+    var initialize: InitCallback
+    var deinitialize: DeinitCallback
 
 
-comptime GDExtensionInterfaceFunctionPtr = fn ()
-comptime GDExtensionInterfaceGetProcAddress = fn (p_function_name: C_PtrConst[c_char]) -> GDExtensionInterfaceFunctionPtr
+comptime InterfaceFunctionPtr = def ()
+comptime InterfaceGetProcAddress = def (func_name: PTRCONST[c_char]) thin -> InterfaceFunctionPtr
 
 
 # Each GDExtension should define a C function that matches the signature of GDExtensionInitializationFunction,
@@ -782,48 +742,38 @@ comptime GDExtensionInitializationFunction = fn (p_get_proc_address: GDExtension
 
 
 @fieldwise_init
-@register_passable("trivial")
-struct GDExtensionGodotVersion:
-    var major: UInt32
-    var minor: UInt32
-    var patch: UInt32
-    var string: C_PtrConst[c_char]
+struct GodotVersion(TrivialRegisterPassable):
+    var major: UInt
+    var minor: UInt
+    var patch: UInt
+    var string: PTRCONST[c_char]
 
 
 @fieldwise_init
-@register_passable("trivial")
-struct GDExtensionGodotVersion2:
-    var major: UInt32
-    var minor: UInt32
-    var patch: UInt32
-    var hex: UInt32  # Full version encoded as hexadecimal with one byte (2 hex digits) per number (e.g. for "3.1.12" it would be 0x03010C)
-    var status: C_PtrConst[c_char]  # (e.g. "stable", "beta", "rc1", "rc2")
-    var build: C_PtrConst[c_char]  # (e.g. "custom_build")
-    var hash: C_PtrConst[c_char]  # Full Git commit hash.
-    var timestamp: UInt64  # Git commit date UNIX timestamp in seconds, or 0 if unavailable.
-    var string: C_PtrConst[c_char]  # (e.g. "Godot v3.1.4.stable.official.mono")
+struct GodotVersion2(TrivialRegisterPassable):
+    var major: UInt
+    var minor: UInt
+    var patch: UInt
+    var hex: UInt # Full version encoded as hexadecimal with one byte (2 hex digits) per number (e.g. for "3.1.12" it would be 0x03010C)
+    var status: PTRCONST[c_char] # (e.g. "stable", "beta", "rc1", "rc2")
+    var build: PTRCONST[c_char] # (e.g. "custom_build")
+    var hash: PTRCONST[c_char] # Full Git commit hash.
+    var timestamp: UInt # Git commit date UNIX timestamp in seconds, or 0 if unavailable.
+    var string: PTRCONST[c_char]  # (e.g. "Godot v3.1.4.stable.official.mono")
 
 
-# Called when starting the main loop.
-comptime GDExtensionMainLoopStartupCallback = fn ()
-
-# Called when shutting down the main loop.
-comptime GDExtensionMainLoopShutdownCallback = fn ()
-
-# Called for every frame iteration of the main loop.
-comptime GDExtensionMainLoopFrameCallback = fn ()
+comptime MainLoopStartupCallback = def () thin # Called when starting the main loop.
+comptime MainLoopShutdownCallback = def () thin # Called when shutting down the main loop.
+comptime MainLoopFrameCallback = def () thin # Called every frame.
 
 
 @fieldwise_init
-@register_passable("trivial")
-struct GDExtensionMainLoopCallbacks:
-    # Will be called after Godot is started and is fully initialized.
-    var startup_func: GDExtensionMainLoopStartupCallback
-    # Will be called before Godot is shutdown when it is still fully initialized.
-    var shutdown_func: GDExtensionMainLoopShutdownCallback
+struct MainLoopCallbacks(TrivialRegisterPassable):
+    var startup: MainLoopStartupCallback # Will be called after Godot is started and is fully initialized.
+    var shutdown: MainLoopShutdownCallback # Will be called before Godot is shutdown when it is still fully initialized.
     # Will be called for each process frame. This will run after all `_process()` methods on Node, and before `ScriptServer::frame()`.
     # This is intended to be the equivalent of `ScriptLanguage::frame()` for GDExtension language bindings that don't use the script API.
-    var frame_func: GDExtensionMainLoopFrameCallback
+    var frame: MainLoopFrameCallback
 
 
 #  @name get_godot_version
@@ -834,7 +784,7 @@ struct GDExtensionMainLoopCallbacks:
 #
 #  @param r_godot_version A pointer to the structure to write the version information into.
 #
-comptime GDExtensionInterfaceGetGodotVersion = fn (r_godot_version: C_Ptr[GDExtensionGodotVersion])
+comptime InterfaceGetGodotVersion = def (r_godot_version: PTR[GodotVersion]) thin
 
 
 #  @name get_godot_version2
@@ -844,7 +794,7 @@ comptime GDExtensionInterfaceGetGodotVersion = fn (r_godot_version: C_Ptr[GDExte
 #
 #  @param r_godot_version A pointer to the structure to write the version information into.
 #
-comptime GDExtensionInterfaceGetGodotVersion2 = fn (r_godot_version: C_Ptr[GDExtensionGodotVersion2])
+comptime InterfaceGetGodotVersion2 = fn (r_godot_version: C_Ptr[GodotVersion2]) thin
 
 
 # INTERFACE: Memory
@@ -859,7 +809,7 @@ comptime GDExtensionInterfaceGetGodotVersion2 = fn (r_godot_version: C_Ptr[GDExt
 #
 #  @return A pointer to the allocated memory, or NULL if unsuccessful.
 #
-comptime GDExtensionInterfaceMemAlloc = fn (p_bytes: c_size_t) -> C_VoidPtr
+comptime InterfaceMemAlloc = def (b_bytes: c_size_t) thin -> VOIDPTR
 
 
 #  @name mem_realloc
@@ -872,7 +822,7 @@ comptime GDExtensionInterfaceMemAlloc = fn (p_bytes: c_size_t) -> C_VoidPtr
 #
 #  @return A pointer to the allocated memory, or NULL if unsuccessful.
 #
-comptime GDExtensionInterfaceMemRealloc = fn (p_ptr: C_VoidPtr, p_bytes: c_size_t) -> C_VoidPtr
+comptime InterafaceMemRealloc = def (p_ptr: VOIDPTR, p_bytes: c_size_t) thin -> VOIDPTR
 
 
 #  @name mem_free
@@ -882,7 +832,7 @@ comptime GDExtensionInterfaceMemRealloc = fn (p_ptr: C_VoidPtr, p_bytes: c_size_
 #
 #  @param p_ptr A pointer to the previously allocated memory.
 #
-comptime GDExtensionInterfaceMemFree = fn (p_ptr: C_VoidPtr)
+comptime InterfaceMemFree = def (p_ptr: VOIDPTR) thin
 
 
 # INTERFACE: Godot Core
@@ -899,7 +849,7 @@ comptime GDExtensionInterfaceMemFree = fn (p_ptr: C_VoidPtr)
 #  @param p_line The line where the error occurred.
 #  @param p_editor_notify Whether or not to notify the editor.
 #
-comptime GDExtensionInterfacePrintError = fn (p_description: C_PtrConst[c_char], p_function: C_PtrConst[c_char], p_file: C_PtrConst[c_char], p_line: Int32, p_editor_notify: GDExtensionBool)
+comptime InterfacePrintError = def (p_description: PTRCONST[c_char], p_function: PTRCONST[c_char], p_file: PTRCONST[c_char], p_line: Int32, p_editor_notify: GDBool) thin
 
 
 #  @name print_error_with_message
@@ -928,7 +878,7 @@ comptime GDExtensionInterfacePrintErrorWithMessage = fn (p_description: C_PtrCon
 #  @param p_line The line where the warning occurred.
 #  @param p_editor_notify Whether or not to notify the editor.
 #
-comptime GDExtensionInterfacePrintWarning = fn (p_description: C_PtrConst[c_char], p_function: C_PtrConst[c_char], p_file: C_PtrConst[c_char], p_line: Int32, p_editor_notify: GDExtensionBool)
+comptime VoidInterfacePrintErrorWithMessage = def (p_description: PTRCONST[c_char], p_message: PTRCONST[c_char], p_function: PTRCONST[c_char], p_file: PTRCONST[c_char], p_line: Int32, p_editor_notify: GDBool) thin
 
 
 #  @name print_warning_with_message
@@ -943,7 +893,7 @@ comptime GDExtensionInterfacePrintWarning = fn (p_description: C_PtrConst[c_char
 #  @param p_line The line where the warning occurred.
 #  @param p_editor_notify Whether or not to notify the editor.
 #
-comptime GDExtensionInterfacePrintWarningWithMessage = fn (p_description: C_PtrConst[c_char], p_message: C_PtrConst[c_char], p_function: C_PtrConst[c_char], p_file: C_PtrConst[c_char], p_line: Int32, p_editor_notify: GDExtensionBool)
+comptime InterfacePrintWarning = def (p_description: PTRCONST[c_char], p_function: PTRCONST[c_char], p_file: PTRCONST[c_char], p_line: Int32, p_editor_notify: GDBool) thin
 
 
 #  @name print_script_error
@@ -957,7 +907,7 @@ comptime GDExtensionInterfacePrintWarningWithMessage = fn (p_description: C_PtrC
 #  @param p_line The line where the error occurred.
 #  @param p_editor_notify Whether or not to notify the editor.
 #
-comptime GDExtensionInterfacePrintScriptError = fn (p_description: C_PtrConst[c_char], p_function: C_PtrConst[c_char], p_file: C_PtrConst[c_char], p_line: Int32, p_editor_notify: GDExtensionBool)
+comptime InterfacePrintWarningWithMessage = def (p_description: PTRCONST[c_char], p_message: PTRCONST[c_char], p_function: PTRCONST[c_char], p_file: PTRCONST[c_char], p_line: Int32, p_editor_notify: GDBool) thin
 
 
 #  @name print_script_error_with_message
@@ -972,7 +922,7 @@ comptime GDExtensionInterfacePrintScriptError = fn (p_description: C_PtrConst[c_
 #  @param p_line The line where the error occurred.
 #  @param p_editor_notify Whether or not to notify the editor.
 #
-comptime GDExtensionInterfacePrintScriptErrorWithMessage = fn (p_description: C_PtrConst[c_char], p_message: C_PtrConst[c_char], p_function: C_PtrConst[c_char], p_file: C_PtrConst[c_char], p_line: Int32, p_editor_notify: GDExtensionBool)
+comptime InterfacePrintScriptError = def (p_description: PTRCONST[c_char], p_function: PTRCONST[c_char], p_file: PTRCONST[c_char], p_line: Int32, p_editor_notify: GDBool) thin
 
 
 #  @name get_native_struct_size
@@ -984,7 +934,7 @@ comptime GDExtensionInterfacePrintScriptErrorWithMessage = fn (p_description: C_
 #
 #  @return The size in bytes.
 #
-comptime GDExtensionInterfaceGetNativeStructSize = fn (p_name: GDExtensionConstStringNamePtr) -> UInt64
+comptime InterfaceGetNativeStructSize = def (p_name: ConstStringNamePtr) thin -> UInt64
 
 
 # INTERFACE: Variant
@@ -998,7 +948,7 @@ comptime GDExtensionInterfaceGetNativeStructSize = fn (p_name: GDExtensionConstS
 #  @param r_dest A pointer to the destination Variant.
 #  @param p_src A pointer to the source Variant.
 #
-comptime GDExtensionInterfaceVariantNewCopy = fn (r_dest: GDExtensionUninitializedVariantPtr, p_src: GDExtensionConstVariantPtr)
+comptime InterfaceVariantNewCopy = def (r_dest: UninitVariantPtr, p_src: ConstVariantPtr) thin
 
 
 #  @name variant_new_nil
@@ -1008,7 +958,7 @@ comptime GDExtensionInterfaceVariantNewCopy = fn (r_dest: GDExtensionUninitializ
 #
 #  @param r_dest A pointer to the destination Variant.
 #
-comptime GDExtensionInterfaceVariantNewNil = fn (r_dest: GDExtensionUninitializedVariantPtr)
+comptime InterfaceVariantNewNil = def (r_dest: UninitVariantPtr) thin
 
 
 #  @name variant_destroy
@@ -1018,7 +968,7 @@ comptime GDExtensionInterfaceVariantNewNil = fn (r_dest: GDExtensionUninitialize
 #
 #  @param p_self A pointer to the Variant to destroy.
 #
-comptime GDExtensionInterfaceVariantDestroy = fn (p_self: GDExtensionVariantPtr)
+comptime InterfaceVariantDestroy = def (p_self: VariantPtr) thin
 
 
 #  @name variant_call
@@ -1035,7 +985,7 @@ comptime GDExtensionInterfaceVariantDestroy = fn (p_self: GDExtensionVariantPtr)
 #
 #  @see Variant::callp()
 #
-comptime GDExtensionInterfaceVariantCall = fn (p_self: GDExtensionVariantPtr, p_method: GDExtensionConstStringNamePtr, p_args: C_PtrConst[GDExtensionConstVariantPtr], p_argument_count: GDExtensionInt, r_return: GDExtensionUninitializedVariantPtr, r_error: C_Ptr[GDExtensionCallError])
+comptime InterfaceVariantCall = def (p_self: VariantPtr, p_method: ConstStringNamePtr, p_args: PTRCONST[ConstVariantPtr], p_argument_count: GDInt, r_return: UninitVariantPtr, r_error: PTR[CallError]) thin
 
 
 #  @name variant_call_static
@@ -1052,7 +1002,7 @@ comptime GDExtensionInterfaceVariantCall = fn (p_self: GDExtensionVariantPtr, p_
 #
 #  @see Variant::call_static()
 #
-comptime GDExtensionInterfaceVariantCallStatic = fn (p_type: GDExtensionVariantType, p_method: GDExtensionConstStringNamePtr, p_args: C_PtrConst[GDExtensionConstVariantPtr], p_argument_count: GDExtensionInt, r_return: GDExtensionUninitializedVariantPtr, r_error: C_Ptr[GDExtensionCallError])
+comptime InterfaceVariantCallStatic = def (p_type: VariantType, p_method: ConstStringNamePtr, p_args: PTRCONST[ConstVariantPtr], p_argument_count: GDInt, r_return: UninitVariantPtr, r_error: PTR[CallError]) thin
 
 
 #  @name variant_evaluate
@@ -1068,7 +1018,7 @@ comptime GDExtensionInterfaceVariantCallStatic = fn (p_type: GDExtensionVariantT
 #
 #  @see Variant::evaluate()
 #
-comptime GDExtensionInterfaceVariantEvaluate = fn (p_op: GDExtensionVariantOperator, p_a: GDExtensionConstVariantPtr, p_b: GDExtensionConstVariantPtr, r_return: GDExtensionUninitializedVariantPtr, r_valid: C_Ptr[GDExtensionBool])
+comptime InterfaceVariantEvaluate = def (p_op: VariantOperator, p_a: ConstVariantPtr, p_b: ConstVariantPtr, r_return: UninitVariantPtr, r_valid: PTR[GDBool]) thin
 
 
 #  @name variant_set
@@ -1083,7 +1033,7 @@ comptime GDExtensionInterfaceVariantEvaluate = fn (p_op: GDExtensionVariantOpera
 #
 #  @see Variant::set()
 #
-comptime GDExtensionInterfaceVariantSet = fn (p_self: GDExtensionVariantPtr, p_key: GDExtensionConstVariantPtr, p_value: GDExtensionConstVariantPtr, r_valid: C_Ptr[GDExtensionBool])
+comptime InterfaceVariantSet = def (p_self: VariantPtr, p_key: ConstVariantPtr, p_value: ConstVariantPtr, r_valid: PTR[GDBool]) thin
 
 
 #  @name variant_set_named
@@ -1098,7 +1048,7 @@ comptime GDExtensionInterfaceVariantSet = fn (p_self: GDExtensionVariantPtr, p_k
 #
 #  @see Variant::set_named()
 #
-comptime GDExtensionInterfaceVariantSetNamed = fn (p_self: GDExtensionVariantPtr, p_key: GDExtensionConstStringNamePtr, p_value: GDExtensionConstVariantPtr, r_valid: C_Ptr[GDExtensionBool])
+comptime InterfaceVariantSetNamed = def (p_self: VariantPtr, p_key: ConstStringNamePtr, p_value: ConstVariantPtr, r_valid: PTR[GDBool]) thin
 
 
 #  @name variant_set_keyed
@@ -1113,7 +1063,7 @@ comptime GDExtensionInterfaceVariantSetNamed = fn (p_self: GDExtensionVariantPtr
 #
 #  @see Variant::set_keyed()
 #
-comptime GDExtensionInterfaceVariantSetKeyed = fn (p_self: GDExtensionVariantPtr, p_key: GDExtensionConstVariantPtr, p_value: GDExtensionConstVariantPtr, r_valid: C_Ptr[GDExtensionBool])
+comptime InterfaceVariantSetKeyed = def (p_self: VariantPtr, p_key: ConstVariantPtr, p_value: ConstVariantPtr, r_valid: PTR[GDBool]) thin
 
 
 #  @name variant_set_indexed
@@ -1127,7 +1077,7 @@ comptime GDExtensionInterfaceVariantSetKeyed = fn (p_self: GDExtensionVariantPtr
 #  @param r_valid A pointer to a boolean which will be set to false if the operation is invalid.
 #  @param r_oob A pointer to a boolean which will be set to true if the index is out of bounds.
 #
-comptime GDExtensionInterfaceVariantSetIndexed = fn (p_self: GDExtensionVariantPtr, p_index: GDExtensionInt, p_value: GDExtensionConstVariantPtr, r_valid: C_Ptr[GDExtensionBool], r_oob: C_Ptr[GDExtensionBool])
+comptime InterfaceVariantSetIndexed = def (p_self: VariantPtr, p_index: GDInt, p_value: ConstVariantPtr, r_valid: PTR[GDBool], r_oob: PTR[GDBool]) thin
 
 
 #  @name variant_get
@@ -1140,7 +1090,7 @@ comptime GDExtensionInterfaceVariantSetIndexed = fn (p_self: GDExtensionVariantP
 #  @param r_ret A pointer to a Variant which will be assigned the value.
 #  @param r_valid A pointer to a boolean which will be set to false if the operation is invalid.
 #
-comptime GDExtensionInterfaceVariantGet = fn (p_self: GDExtensionConstVariantPtr, p_key: GDExtensionConstVariantPtr, r_ret: GDExtensionUninitializedVariantPtr, r_valid: C_Ptr[GDExtensionBool])
+comptime InterfaceVariantGet = def (p_self: ConstVariantPtr, p_key: ConstVariantPtr, r_ret: UninitVariantPtr, r_valid: PTR[GDBool]) thin
 
 
 #  @name variant_get_named
