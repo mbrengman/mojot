@@ -1103,8 +1103,7 @@ comptime InterfaceVariantGet = def (p_self: ConstVariantPtr, p_key: ConstVariant
 #  @param r_ret A pointer to a Variant which will be assigned the value.
 #  @param r_valid A pointer to a boolean which will be set to false if the operation is invalid.
 #
-comptime GDExtensionInterfaceVariantGetNamed = fn (p_self: GDExtensionConstVariantPtr, p_key: GDExtensionConstStringNamePtr, r_ret: GDExtensionUninitializedVariantPtr, r_valid: C_Ptr[GDExtensionBool])
-
+comptime InterfaceVariantGetNamed = def (p_self: ConstVariantPtr, p_key: ConstStringNamePtr, r_ret: UninitVariantPtr, r_valid: PTR[GDBool]) thin
 
 #  @name variant_get_keyed
 #  @since 4.1
@@ -1116,7 +1115,7 @@ comptime GDExtensionInterfaceVariantGetNamed = fn (p_self: GDExtensionConstVaria
 #  @param r_ret A pointer to a Variant which will be assigned the value.
 #  @param r_valid A pointer to a boolean which will be set to false if the operation is invalid.
 #
-comptime GDExtensionInterfaceVariantGetKeyed = fn (p_self: GDExtensionConstVariantPtr, p_key: GDExtensionConstVariantPtr, r_ret: GDExtensionUninitializedVariantPtr, r_valid: C_Ptr[GDExtensionBool])
+comptime InterfaceVariantGetKeyed = def (p_self: ConstVariantPtr, p_key: ConstVariantPtr, r_ret: UninitVariantPtr, r_valid: PTR[GDBool]) thin
 
 
 #  @name variant_get_indexed
@@ -1130,7 +1129,7 @@ comptime GDExtensionInterfaceVariantGetKeyed = fn (p_self: GDExtensionConstVaria
 #  @param r_valid A pointer to a boolean which will be set to false if the operation is invalid.
 #  @param r_oob A pointer to a boolean which will be set to true if the index is out of bounds.
 #
-comptime GDExtensionInterfaceVariantGetIndexed = fn (p_self: GDExtensionConstVariantPtr, p_index: GDExtensionInt, r_ret: GDExtensionUninitializedVariantPtr, r_valid: C_Ptr[GDExtensionBool], r_oob: C_Ptr[GDExtensionBool])
+comptime InterfaceVariantGetIndexed = def (p_self: ConstVariantPtr, p_index: GDInt, r_ret: UninitVariantPtr, r_valid: PTR[GDBool], r_oob: PTR[GDBool]) thin
 
 
 #  @name variant_iter_init
@@ -1146,7 +1145,7 @@ comptime GDExtensionInterfaceVariantGetIndexed = fn (p_self: GDExtensionConstVar
 #
 #  @see Variant::iter_init()
 #
-comptime GDExtensionInterfaceVariantIterInit = fn (p_self: GDExtensionConstVariantPtr, r_iter: GDExtensionUninitializedVariantPtr, r_valid: C_Ptr[GDExtensionBool]) -> GDExtensionBool
+comptime InterfaceVariantIterInit = def (p_self: ConstVariantPtr, r_iter: UninitVariantPtr, r_valid: PTR[GDBool]) thin -> GDBool
 
 
 #  @name variant_iter_next
@@ -1162,7 +1161,7 @@ comptime GDExtensionInterfaceVariantIterInit = fn (p_self: GDExtensionConstVaria
 #
 #  @see Variant::iter_next()
 #
-comptime GDExtensionInterfaceVariantIterNext = fn (p_self: GDExtensionConstVariantPtr, r_iter: GDExtensionVariantPtr, r_valid: C_Ptr[GDExtensionBool]) -> GDExtensionBool
+comptime InterfaceVariantIterNext = def (p_self: ConstVariantPtr, r_iter: VariantPtr, r_valid: PTR[GDBool]) thin -> GDBool
 
 
 #  @name variant_iter_get
@@ -1177,7 +1176,7 @@ comptime GDExtensionInterfaceVariantIterNext = fn (p_self: GDExtensionConstVaria
 #
 #  @see Variant::iter_get()
 #
-comptime GDExtensionInterfaceVariantIterGet = fn (p_self: GDExtensionConstVariantPtr, r_iter: GDExtensionVariantPtr, r_ret: GDExtensionUninitializedVariantPtr, r_valid: C_Ptr[GDExtensionBool])
+comptime InterfaceVariantIterGet = def (p_self: ConstVariantPtr, r_iter: VariantPtr, r_ret: UninitVariantPtr, r_valid: PTR[GDBool]) thin
 
 
 #  @name variant_hash
@@ -1191,7 +1190,7 @@ comptime GDExtensionInterfaceVariantIterGet = fn (p_self: GDExtensionConstVarian
 #
 #  @see Variant::hash()
 #
-comptime GDExtensionInterfaceVariantHash = fn (p_self: GDExtensionConstVariantPtr) -> GDExtensionInt
+comptime InterfaceVariantHash = def (p_self: ConstVariantPtr) thin  -> GDInt
 
 
 #  @name variant_recursive_hash
@@ -1206,7 +1205,7 @@ comptime GDExtensionInterfaceVariantHash = fn (p_self: GDExtensionConstVariantPt
 #
 #  @see Variant::recursive_hash()
 #
-comptime GDExtensionInterfaceVariantRecursiveHash = fn (p_self: GDExtensionConstVariantPtr, p_recursion_count: GDExtensionInt) -> GDExtensionInt
+comptime InterfaceVariantRecursiveHash = def (p_self: ConstVariantPtr, p_recursion_count: GDInt) thin -> GDInt
 
 
 #  @name variant_hash_compare
@@ -1221,7 +1220,7 @@ comptime GDExtensionInterfaceVariantRecursiveHash = fn (p_self: GDExtensionConst
 #
 #  @see Variant::hash_compare()
 #
-comptime GDExtensionInterfaceVariantHashCompare = fn (p_self: GDExtensionConstVariantPtr, p_other: GDExtensionConstVariantPtr) -> GDExtensionBool
+comptime InterfaceVariantHashCompare = def (p_self: ConstVariantPtr, p_other: ConstVariantPtr) thin -> GDBool
 
 
 #  @name variant_booleanize
@@ -1233,7 +1232,7 @@ comptime GDExtensionInterfaceVariantHashCompare = fn (p_self: GDExtensionConstVa
 #
 #  @return The boolean value of the Variant.
 #
-comptime GDExtensionInterfaceVariantBooleanize = fn (p_self: GDExtensionConstVariantPtr) -> GDExtensionBool
+comptime InterfaceVariantBooleanize = def (p_self: ConstVariantPtr) thin -> GDBool
 
 
 #  @name variant_duplicate
@@ -1245,7 +1244,7 @@ comptime GDExtensionInterfaceVariantBooleanize = fn (p_self: GDExtensionConstVar
 #  @param r_ret A pointer to a Variant to store the duplicated value.
 #  @param p_deep Whether or not to duplicate deeply (when supported by the Variant type).
 #
-comptime GDExtensionInterfaceVariantDuplicate = fn (p_self: GDExtensionConstVariantPtr, r_ret: GDExtensionVariantPtr, p_deep: GDExtensionBool)
+comptime InterfaceVariantDuplicate = def (p_self: ConstVariantPtr, r_ret: VariantPtr, p_deep: GDBool) thin
 
 
 #  @name variant_stringify
@@ -1256,7 +1255,7 @@ comptime GDExtensionInterfaceVariantDuplicate = fn (p_self: GDExtensionConstVari
 #  @param p_self A pointer to the Variant.
 #  @param r_ret A pointer to a String to store the resulting value.
 #
-comptime GDExtensionInterfaceVariantStringify = fn (p_self: GDExtensionConstVariantPtr, r_ret: GDExtensionStringPtr)
+comptime InterfaceVariantStringify = def (p_self: ConstVariantPtr, r_ret: StringPtr) thin
 
 
 #  @name variant_get_type
@@ -1268,7 +1267,7 @@ comptime GDExtensionInterfaceVariantStringify = fn (p_self: GDExtensionConstVari
 #
 #  @return The variant type.
 #
-comptime GDExtensionInterfaceVariantGetType = fn (p_self: GDExtensionConstVariantPtr) -> GDExtensionVariantType
+comptime InterfaceVariantGetType = def (p_self: ConstVariantPtr) -> VariantType
 
 
 #  @name variant_has_method
@@ -1281,7 +1280,7 @@ comptime GDExtensionInterfaceVariantGetType = fn (p_self: GDExtensionConstVarian
 #
 #  @return true if the variant has the given method; otherwise false.
 #
-comptime GDExtensionInterfaceVariantHasMethod = fn (p_self: GDExtensionConstVariantPtr, p_method: GDExtensionConstStringNamePtr) -> GDExtensionBool
+comptime InterfaceVariantHasMethod = def (p_self: ConstVariantPtr, p_method: ConstStringNamePtr) thin -> GDBool
 
 
 #  @name variant_has_member
@@ -1294,7 +1293,7 @@ comptime GDExtensionInterfaceVariantHasMethod = fn (p_self: GDExtensionConstVari
 #
 #  @return true if the variant has the given method; otherwise false.
 #
-comptime GDExtensionInterfaceVariantHasMember = fn (p_type: GDExtensionVariantType, p_member: GDExtensionConstStringNamePtr) -> GDExtensionBool
+comptime InterfaceVariantHasMember = def (p_type: VariantType, p_member: ConstStringNamePtr) thin -> GDBool
 
 
 #  @name variant_has_key
@@ -1308,7 +1307,7 @@ comptime GDExtensionInterfaceVariantHasMember = fn (p_type: GDExtensionVariantTy
 #
 #  @return true if the key exists; otherwise false.
 #
-comptime GDExtensionInterfaceVariantHasKey = fn (p_self: GDExtensionConstVariantPtr, p_key: GDExtensionConstVariantPtr, r_valid: C_Ptr[GDExtensionBool]) -> GDExtensionBool
+comptime InterfaceVariantHasKey = def (p_self: ConstVariantPtr, p_key: ConstVariantPtr, r_valid: PTR[GDBool]) thin -> GDBool
 
 
 #  @name variant_get_object_instance_id
@@ -1323,7 +1322,7 @@ comptime GDExtensionInterfaceVariantHasKey = fn (p_self: GDExtensionConstVariant
 #
 #  @return The instance ID for the contained object.
 #
-comptime GDExtensionInterfaceVariantGetObjectInstanceId = fn (p_self: GDExtensionConstVariantPtr) -> GDObjectInstanceID
+comptime InterfaceVariantGetObjectInstanceId = def (p_self: ConstVariantPtr) thin -> ObjectInstanceID
 
 
 #  @name variant_get_type_name
@@ -1334,7 +1333,7 @@ comptime GDExtensionInterfaceVariantGetObjectInstanceId = fn (p_self: GDExtensio
 #  @param p_type The Variant type.
 #  @param r_name A pointer to a String to store the Variant type name.
 #
-comptime GDExtensionInterfaceVariantGetTypeName = fn (p_type: GDExtensionVariantType, r_name: GDExtensionUninitializedStringPtr)
+comptime InterfaceVariantGetTypeName = def (p_type: VariantType, r_name: UninitStringPtr) thin
 
 
 #  @name variant_can_convert
@@ -1347,7 +1346,7 @@ comptime GDExtensionInterfaceVariantGetTypeName = fn (p_type: GDExtensionVariant
 #
 #  @return true if the conversion is possible; otherwise false.
 #
-comptime GDExtensionInterfaceVariantCanConvert = fn (p_from: GDExtensionVariantType, p_to: GDExtensionVariantType) -> GDExtensionBool
+comptime InterfaceVariantCanConvert = def (p_from: VariantType, p_to: VariantType) thin -> GDBool
 
 
 #  @name variant_can_convert_strict
@@ -1360,7 +1359,7 @@ comptime GDExtensionInterfaceVariantCanConvert = fn (p_from: GDExtensionVariantT
 #
 #  @return true if the conversion is possible; otherwise false.
 #
-comptime GDExtensionInterfaceVariantCanConvertStrict = fn (p_from: GDExtensionVariantType, p_to: GDExtensionVariantType) -> GDExtensionBool
+comptime InterfaceVariantCanConvertStrict = def (p_from: VariantType, p_to: VariantType) thin-> GDBool
 
 
 #  @name get_variant_from_type_constructor
@@ -1372,7 +1371,7 @@ comptime GDExtensionInterfaceVariantCanConvertStrict = fn (p_from: GDExtensionVa
 #
 #  @return A pointer to a function that can create a Variant of the given type from a raw value.
 #
-comptime GDExtensionInterfaceGetVariantFromTypeConstructor = fn (p_type: GDExtensionVariantType) -> GDExtensionVariantFromTypeConstructorFunc
+comptime InterfaceGetVariantFromTypeConstructor = def (p_type: VariantType) thin -> VariantFromTypeConstructorFunc
 
 
 #  @name get_variant_to_type_constructor
@@ -1384,7 +1383,7 @@ comptime GDExtensionInterfaceGetVariantFromTypeConstructor = fn (p_type: GDExten
 #
 #  @return A pointer to a function that can get the raw value from a Variant of the given type.
 #
-comptime GDExtensionInterfaceGetVariantToTypeConstructor = fn (p_type: GDExtensionVariantType) -> GDExtensionTypeFromVariantConstructorFunc
+comptime InterfaceGetVariantToTypeConstructor = def (p_type: VariantType) thin -> TypeFromVariantConstructorFunc
 
 
 #  @name variant_get_ptr_internal_getter
@@ -1401,7 +1400,7 @@ comptime GDExtensionInterfaceGetVariantToTypeConstructor = fn (p_type: GDExtensi
 #
 #  @return A pointer to a type-specific function that returns a pointer to the internal value of a variant. Check the implementation of this function (gdextension_variant_get_ptr_internal_getter) for pointee type info of each variant type.
 #
-comptime GDExtensionInterfaceGetVariantGetInternalPtrFunc = fn (p_type: GDExtensionVariantType) -> GDExtensionVariantGetInternalPtrFunc
+comptime InterfaceGetVariantGetInternalPtrFunc = def (p_type: VariantType) thin -> VariantGetInternalPtrFunc
 
 
 #  @name variant_get_ptr_operator_evaluator
@@ -1415,7 +1414,7 @@ comptime GDExtensionInterfaceGetVariantGetInternalPtrFunc = fn (p_type: GDExtens
 #
 #  @return A pointer to a function that can evaluate the given Variant operator on the given Variant types.
 #
-comptime GDExtensionInterfaceVariantGetPtrOperatorEvaluator = fn (p_operator: GDExtensionVariantOperator, p_type_a: GDExtensionVariantType, p_type_b: GDExtensionVariantType) -> GDExtensionPtrOperatorEvaluator
+comptime InterfaceVariantGetPtrOperatorEvaluator = def (p_operator: VariantOperator, p_type_a: VariantType, p_type_b: VariantType) thin -> PtrOperatorEvaluator
 
 
 #  @name variant_get_ptr_builtin_method
@@ -1429,7 +1428,7 @@ comptime GDExtensionInterfaceVariantGetPtrOperatorEvaluator = fn (p_operator: GD
 #
 #  @return A pointer to a function that can call a builtin method on a type of Variant.
 #
-comptime GDExtensionInterfaceVariantGetPtrBuiltinMethod = fn (p_type: GDExtensionVariantType, p_method: GDExtensionConstStringNamePtr, p_hash: GDExtensionInt) -> GDExtensionPtrBuiltInMethod
+comptime InterfaceVariantGetPtrBuiltinMethod = def (p_type: VariantType, p_method: ConstStringNamePtr, p_hash: GDInt) thin -> PtrBuiltInMethod
 
 
 #  @name variant_get_ptr_constructor
@@ -1442,7 +1441,7 @@ comptime GDExtensionInterfaceVariantGetPtrBuiltinMethod = fn (p_type: GDExtensio
 #
 #  @return A pointer to a function that can call one of the constructors for a type of Variant.
 #
-comptime GDExtensionInterfaceVariantGetPtrConstructor = fn (p_type: GDExtensionVariantType, p_constructor: Int32) -> GDExtensionPtrConstructor
+comptime InterfaceVariantGetPtrConstructor = def (p_type: VariantType, p_constructor: Int32) thin -> PtrConstructor
 
 
 #  @name variant_get_ptr_destructor
@@ -1454,7 +1453,7 @@ comptime GDExtensionInterfaceVariantGetPtrConstructor = fn (p_type: GDExtensionV
 #
 #  @return A pointer to a function than can call the destructor for a type of Variant.
 #
-comptime GDExtensionInterfaceVariantGetPtrDestructor = fn (p_type: GDExtensionVariantType) -> GDExtensionPtrDestructor
+comptime InterfaceVariantGetPtrDestructor = def (p_type: VariantType) thin -> PtrDestructor
 
 #  @name variant_construct
 #  @since 4.1
@@ -1467,7 +1466,7 @@ comptime GDExtensionInterfaceVariantGetPtrDestructor = fn (p_type: GDExtensionVa
 #  @param p_argument_count The number of arguments to pass to the constructor.
 #  @param r_error A pointer the structure which will be updated with error information.
 #
-comptime GDExtensionInterfaceVariantConstruct = fn (p_type: GDExtensionVariantType, r_base: GDExtensionUninitializedVariantPtr, p_args: C_PtrConst[GDExtensionConstVariantPtr], p_argument_count: Int32, r_error: C_Ptr[GDExtensionCallError])
+comptime InterfaceVariantConstruct = def (p_type: VariantType, r_base: UninitVariantPtr, p_args: PTRCONST[ConstVariantPtr], p_argument_count: Int32, r_error: PTR[CallError]) thin
 
 
 #  @name variant_get_ptr_setter
