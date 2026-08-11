@@ -1479,7 +1479,7 @@ comptime InterfaceVariantConstruct = def (p_type: VariantType, r_base: UninitVar
 #
 #  @return A pointer to a function that can call a member's setter on the given Variant type.
 #
-comptime GDExtensionInterfaceVariantGetPtrSetter = fn (p_type: GDExtensionVariantType, p_member: GDExtensionConstStringNamePtr) -> GDExtensionPtrSetter
+comptime InterfaceVariantGetPtrSetter = def (p_type: VariantType, p_member: ConstStringNamePtr) thin -> PtrSetter
 
 
 #  @name variant_get_ptr_getter
@@ -1492,7 +1492,7 @@ comptime GDExtensionInterfaceVariantGetPtrSetter = fn (p_type: GDExtensionVarian
 #
 #  @return A pointer to a function that can call a member's getter on the given Variant type.
 #
-comptime GDExtensionInterfaceVariantGetPtrGetter = fn (p_type: GDExtensionVariantType, p_member: GDExtensionConstStringNamePtr) -> GDExtensionPtrGetter
+comptime InterfaceVariantGetPtrGetter = def (p_type: VariantType, p_member: ConstStringNamePtr) thin -> PtrGetter
 
 
 #  @name variant_get_ptr_indexed_setter
@@ -1504,7 +1504,7 @@ comptime GDExtensionInterfaceVariantGetPtrGetter = fn (p_type: GDExtensionVarian
 #
 #  @return A pointer to a function that can set an index on the given Variant type.
 #
-comptime GDExtensionInterfaceVariantGetPtrIndexedSetter = fn (p_type: GDExtensionVariantType) -> GDExtensionPtrIndexedSetter
+comptime InterfaceVariantGetPtrIndexedSetter = def (p_type: VariantType) thin -> PtrIndexedSetter
 
 
 #  @name variant_get_ptr_indexed_getter
@@ -1516,7 +1516,7 @@ comptime GDExtensionInterfaceVariantGetPtrIndexedSetter = fn (p_type: GDExtensio
 #
 #  @return A pointer to a function that can get an index on the given Variant type.
 #
-comptime GDExtensionInterfaceVariantGetPtrIndexedGetter = fn (p_type: GDExtensionVariantType) -> GDExtensionPtrIndexedGetter
+comptime InterfaceVariantGetPtrIndexedGetter = def (p_type: VariantType) thin -> PtrIndexedGetter
 
 
 #  @name variant_get_ptr_keyed_setter
@@ -1528,7 +1528,7 @@ comptime GDExtensionInterfaceVariantGetPtrIndexedGetter = fn (p_type: GDExtensio
 #
 #  @return A pointer to a function that can set a key on the given Variant type.
 #
-comptime GDExtensionInterfaceVariantGetPtrKeyedSetter = fn (p_type: GDExtensionVariantType) -> GDExtensionPtrKeyedSetter
+comptime InterfaceVariantGetPtrKeyedSetter = def (p_type: VariantType) thin -> PtrKeyedSetter
 
 
 #  @name variant_get_ptr_keyed_getter
@@ -1540,7 +1540,7 @@ comptime GDExtensionInterfaceVariantGetPtrKeyedSetter = fn (p_type: GDExtensionV
 #
 #  @return A pointer to a function that can get a key on the given Variant type.
 #
-comptime GDExtensionInterfaceVariantGetPtrKeyedGetter = fn (p_type: GDExtensionVariantType) -> GDExtensionPtrKeyedGetter
+comptime InterfaceVariantGetPtrKeyedGetter = def (p_type: VariantType) thin -> PtrKeyedGetter
 
 
 #  @name variant_get_ptr_keyed_checker
@@ -1552,7 +1552,7 @@ comptime GDExtensionInterfaceVariantGetPtrKeyedGetter = fn (p_type: GDExtensionV
 #
 #  @return A pointer to a function that can check a key on the given Variant type.
 #
-comptime GDExtensionInterfaceVariantGetPtrKeyedChecker = fn (p_type: GDExtensionVariantType) -> GDExtensionPtrKeyedChecker
+comptime InterfaceVariantGetPtrKeyedChecker = def (p_type: VariantType) thin -> PtrKeyedChecker
 
 
 #  @name variant_get_constant_value
@@ -1564,7 +1564,7 @@ comptime GDExtensionInterfaceVariantGetPtrKeyedChecker = fn (p_type: GDExtension
 #  @param p_constant A pointer to a StringName with the constant name.
 #  @param r_ret A pointer to a Variant to store the value.
 #
-comptime GDExtensionInterfaceVariantGetConstantValue = fn (p_type: GDExtensionVariantType, p_constant: GDExtensionConstStringNamePtr, r_ret: GDExtensionUninitializedVariantPtr)
+comptime InterfaceVariantGetConstantValue = def (p_type: VariantType, p_constant: ConstStringNamePtr, r_ret: UninitVariantPtr) thin
 
 
 #  @name variant_get_ptr_utility_function
@@ -1577,7 +1577,7 @@ comptime GDExtensionInterfaceVariantGetConstantValue = fn (p_type: GDExtensionVa
 #
 #  @return A pointer to a function that can call a Variant utility function.
 #
-comptime GDExtensionInterfaceVariantGetPtrUtilityFunction = fn (p_function: GDExtensionConstStringNamePtr, p_hash: GDExtensionInt) -> GDExtensionPtrUtilityFunction
+comptime InterfaceVariantGetPtrUtilityFunction = def (p_function: ConstStringNamePtr, p_hash: GDInt) thin -> PtrUtilityFunction
 
 
 # INTERFACE: String Utilities
@@ -1591,7 +1591,7 @@ comptime GDExtensionInterfaceVariantGetPtrUtilityFunction = fn (p_function: GDEx
 #  @param r_dest A pointer to a Variant to hold the newly created String.
 #  @param p_contents A pointer to a Latin-1 encoded C string (null terminated).
 #
-comptime GDExtensionInterfaceStringNewWithLatin1Chars = fn (r_dest: GDExtensionUninitializedStringPtr, p_contents: C_PtrConst[c_char])
+comptime InterfaceStringNewWithLatin1Chars = def (r_dest: UninitStringPtr, p_contents: PTRCONST[c_char]) thin
 
 
 #  @name string_new_with_utf8_chars
@@ -1602,7 +1602,7 @@ comptime GDExtensionInterfaceStringNewWithLatin1Chars = fn (r_dest: GDExtensionU
 #  @param r_dest A pointer to a Variant to hold the newly created String.
 #  @param p_contents A pointer to a UTF-8 encoded C string (null terminated).
 #
-comptime GDExtensionInterfaceStringNewWithUtf8Chars = fn (r_dest: GDExtensionUninitializedStringPtr, p_contents: C_PtrConst[c_char])
+comptime InterfaceStringNewWithUtf8Chars = def (r_dest: UninitStringPtr, p_contents: PTRCONST[c_char]) thin
 
 
 #  @name string_new_with_utf16_chars
@@ -1613,7 +1613,7 @@ comptime GDExtensionInterfaceStringNewWithUtf8Chars = fn (r_dest: GDExtensionUni
 #  @param r_dest A pointer to a Variant to hold the newly created String.
 #  @param p_contents A pointer to a UTF-16 encoded C string (null terminated).
 #
-comptime GDExtensionInterfaceStringNewWithUtf16Chars = fn (r_dest: GDExtensionUninitializedStringPtr, p_contents: C_PtrConst[c_char16])
+comptime InterfaceStringNewWithUtf16Chars = def (r_dest: UninitStringPtr, p_contents: PTRCONST[c_char16]) thin
 
 
 #  @name string_new_with_utf32_chars
